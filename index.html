@@ -425,6 +425,218 @@ body{font-size:16px}
 .champEvoWrap{grid-template-columns:minmax(0,1fr) 215px}
 .champEvoChart{overflow:visible}
 
+
+/* ===== Results table: dashboard-integrated style ===== */
+.champRightResults{
+  background:
+    radial-gradient(520px 160px at 50% 0%,rgba(255,255,255,.045),transparent 72%),
+    linear-gradient(145deg,rgba(24,31,36,.96),rgba(10,15,18,.96));
+  border:1px solid rgba(67,76,83,.95);
+  border-radius:16px;
+  box-shadow:0 10px 28px rgba(0,0,0,.48);
+}
+.champRightResults .title{
+  font-size:20px;
+  padding:13px 15px 9px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  border-bottom:1px solid rgba(70,78,84,.55);
+}
+.champResultsTable{
+  padding:7px 10px 10px;
+  max-height:300px;
+  overflow:auto;
+}
+.champResultsTable table{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0 4px;
+  font-size:11.5px;
+}
+.champResultsTable th{
+  position:sticky;
+  top:0;
+  z-index:5;
+  background:#141a1e;
+  color:#98a3ab;
+  font-size:10px;
+  font-weight:950;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+  padding:8px 7px;
+  border:0;
+}
+.champResultsTable td{
+  padding:8px 7px;
+  background:rgba(25,31,35,.94);
+  color:#edf0f2;
+  border-top:1px solid rgba(68,76,82,.5);
+  border-bottom:1px solid rgba(8,11,13,.72);
+  white-space:nowrap;
+}
+.champResultsTable tbody tr td:first-child{
+  border-left:3px solid #46515a;
+  border-radius:7px 0 0 7px;
+  font-weight:950;
+}
+.champResultsTable tbody tr td:last-child{
+  border-radius:0 7px 7px 0;
+}
+.champResultsTable tbody tr:hover td{
+  background:rgba(35,43,49,.98);
+}
+.champResultsTable td:nth-child(2){
+  font-weight:900;
+}
+.champResultsTable td:nth-child(3){
+  color:#c4ccd1;
+  font-size:10.5px;
+}
+.champResultsTable td:nth-child(4){
+  text-align:center;
+  color:var(--gold);
+  font-weight:950;
+  font-size:12px;
+}
+.champResultsTable td:nth-child(5){
+  text-align:right;
+  color:#d5dce0;
+  font-family:Consolas,monospace;
+  font-size:10.5px;
+}
+
+/* colored pilot rail on every result row */
+.champResultsTable tbody tr.pilot-berton td:first-child{border-left-color:#f2c94e}
+.champResultsTable tbody tr.pilot-henrique td:first-child{border-left-color:#4e8cff}
+.champResultsTable tbody tr.pilot-rose td:first-child{border-left-color:#9d4edd}
+.champResultsTable tbody tr.pilot-rex td:first-child{border-left-color:#21c76a}
+.champResultsTable tbody tr.pilot-guima td:first-child{border-left-color:#22c1d6}
+.champResultsTable tbody tr.pilot-robinho td:first-child{border-left-color:#f39c33}
+.champResultsTable tbody tr.pilot-nicolas td:first-child{border-left-color:#8a61d8}
+.champResultsTable tbody tr.pilot-guilherme td:first-child{border-left-color:#f2f2f2}
+.champResultsTable tbody tr.pilot-lucas td:first-child{border-left-color:#ef1721}
+.champResultsTable tbody tr.pilot-rian td:first-child{border-left-color:#ff4f9a}
+.champResultsTable tbody tr.pilot-caua td:first-child{border-left-color:#8d969d}
+.champResultsTable tbody tr.pilot-hiro td:first-child{border-left-color:#ff7a18}
+
+@media(max-width:700px){
+  .champRightResults .title{font-size:20px}
+  .champResultsTable{max-height:340px;padding:6px 7px 8px}
+  .champResultsTable table{font-size:10px;border-spacing:0 3px}
+  .champResultsTable th{font-size:9px;padding:7px 5px}
+  .champResultsTable td{padding:7px 5px}
+  .champResultsTable td:nth-child(3){font-size:9px}
+  .champResultsTable td:nth-child(5){font-size:9px}
+}
+
+
+/* Remove the old bright zebra rows from the general-results table */
+.champResultsTable table tbody tr:nth-child(even) td,
+.champResultsTable table tbody tr:nth-child(odd) td{
+  background:rgba(25,31,35,.94) !important;
+  color:#edf0f2 !important;
+}
+.champResultsTable table tbody tr:hover td{
+  background:rgba(35,43,49,.99) !important;
+  color:#fff !important;
+}
+.champResultsTable table th{
+  background:#11171b !important;
+  color:#dfe5e8 !important;
+}
+
+
+/* ===== Pilot RESULTS DAS CORRIDAS — same visual as General Classification ===== */
+.resultsCorner{
+  background:
+    radial-gradient(520px 160px at 50% 0%,rgba(255,255,255,.045),transparent 72%),
+    linear-gradient(145deg,rgba(24,31,36,.96),rgba(10,15,18,.96));
+  border:1px solid rgba(67,76,83,.95);
+  border-radius:16px;
+  box-shadow:0 10px 28px rgba(0,0,0,.48);
+  overflow:hidden;
+}
+.resultsCorner .title{
+  font-size:20px;
+  padding:13px 15px 9px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  border-bottom:1px solid rgba(70,78,84,.55);
+}
+.resultsCorner .dataBlock{
+  max-height:245px;
+  padding:7px 10px 10px;
+  overflow:auto;
+}
+.resultsCorner table{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0 4px;
+  font-size:11.5px;
+}
+.resultsCorner th{
+  position:sticky;
+  top:0;
+  z-index:5;
+  background:#141a1e !important;
+  color:#dfe5e8 !important;
+  font-size:10px;
+  font-weight:950;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+  padding:8px 7px;
+  border:0;
+}
+.resultsCorner td{
+  padding:8px 7px;
+  background:rgba(25,31,35,.94) !important;
+  color:#edf0f2 !important;
+  border-top:1px solid rgba(68,76,82,.5);
+  border-bottom:1px solid rgba(8,11,13,.72);
+  white-space:nowrap;
+}
+.resultsCorner tbody tr td:first-child{
+  border-left:3px solid #46515a;
+  border-radius:7px 0 0 7px;
+  font-weight:950;
+}
+.resultsCorner tbody tr td:last-child{
+  border-radius:0 7px 7px 0;
+}
+.resultsCorner tbody tr:hover td{
+  background:rgba(35,43,49,.99) !important;
+  color:#fff !important;
+}
+.resultsCorner td:nth-child(2){
+  text-align:center;
+  font-weight:950;
+}
+.resultsCorner td:nth-child(3){
+  text-align:center;
+  color:var(--gold) !important;
+  font-weight:950;
+  font-size:12px;
+}
+.resultsCorner td:nth-child(4){
+  text-align:right;
+  color:#d5dce0 !important;
+  font-family:Consolas,monospace;
+  font-size:10.5px;
+}
+.resultsCorner tbody tr.pilot-selected td:first-child{
+  border-left-color:var(--red);
+}
+@media(max-width:700px){
+  .resultsCorner .title{font-size:20px}
+  .resultsCorner .dataBlock{max-height:340px;padding:6px 7px 8px}
+  .resultsCorner table{font-size:10px;border-spacing:0 3px}
+  .resultsCorner th{font-size:9px;padding:7px 5px}
+  .resultsCorner td{padding:7px 5px}
+  .resultsCorner td:nth-child(4){font-size:9px}
+}
+
 </style>
 </head>
 <body>
@@ -731,7 +943,7 @@ function updateChamp(){
   const sorted=rows.slice().sort((a,b)=>Number(b.pontos)-Number(a.pontos)||(posMap[a.posicao]||99)-(posMap[b.posicao]||99)||a.piloto.localeCompare(b.piloto));
   document.getElementById("resultTable").innerHTML=sorted.length?`<table>
     <thead><tr><th>POS.</th><th>PILOTO</th><th>CORRIDA</th><th>PTS</th><th>MELHOR VOLTA</th></tr></thead>
-    <tbody>${sorted.map(x=>`<tr>
+    <tbody>${sorted.map(x=>`<tr class="pilot-${String(x.piloto).toLowerCase()}">
       <td><strong>${posMap[x.posicao]||"—"}º</strong></td><td>${esc(x.piloto)}</td><td>${esc(x.raceKey)}</td>
       <td>${x.pontos}</td><td>${esc(x.volta)}</td>
     </tr>`).join("")}</tbody></table>`:`<div class="empty">Sem dados</div>`;
@@ -798,7 +1010,7 @@ function updatePilot(){
   document.getElementById("pilotTable").innerHTML=rows.length?`
   <table><thead><tr><th>CORRIDA</th><th>POSIÇÃO</th><th>PONTOS</th><th>MELHOR VOLTA</th></tr></thead>
   <tbody>${RACES.map(r=>rows.find(x=>x.raceKey===r)).filter(Boolean).map(x=>
-    `<tr><td>${esc(x.raceKey)}</td><td><strong>${posMap[x.posicao]||"—"}º</strong></td><td>${x.pontos}</td><td>${esc(x.volta)}</td></tr>`
+    `<tr class="pilot-selected"><td>${esc(x.raceKey)}</td><td><strong>${posMap[x.posicao]||"—"}º</strong></td><td>${x.pontos}</td><td>${esc(x.volta)}</td></tr>`
   ).join("")}</tbody></table>`:`<div class="empty">Sem dados</div>`;
 
   // Red bar chart: actual points earned in each race.
