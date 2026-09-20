@@ -251,8 +251,12 @@ td:first-child{font-weight:900}
 .champRacePts{text-align:right;font-size:12px;font-weight:950;color:#e7eaed}
 .champRaceBar{grid-column:2/4;height:6px;background:#21282d;border-radius:99px;overflow:hidden;margin-top:-4px}.champRaceBar i{display:block;height:100%;border-radius:99px}
 .champRank{padding:0 13px 13px}
-.champRankRow{display:grid;grid-template-columns:24px 78px 1fr 35px;gap:8px;align-items:center;margin:8px 0}
-.champRankNo{font-size:13px;font-weight:950;text-align:center}.champRankName{font-size:13px;font-weight:900}
+.champRankRow{display:grid;grid-template-columns:24px 98px minmax(0,1fr) 35px;gap:8px;align-items:center;margin:8px 0;cursor:pointer;border-radius:8px;padding:2px 4px;transition:background .14s ease,transform .14s ease}
+.champRankRow:hover{background:rgba(255,255,255,.045);transform:translateX(2px)}
+.champRankRow:focus{outline:2px solid rgba(239,23,33,.7);outline-offset:1px}
+.champRankRow:active{transform:translateX(1px)}
+.champRankNo{font-size:13px;font-weight:950;text-align:center}
+.champRankName{font-size:13px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:clip;min-width:0}
 .champRankBar{height:17px;background:#20272c;border-radius:2px;overflow:hidden}.champRankBar i{display:block;height:100%}
 .champRankPts{font-size:12px;font-weight:950;text-align:right;color:var(--gold)}
 @media(max-width:1320px){
@@ -608,6 +612,11 @@ body{font-size:16px}
 .resultsCorner tbody tr:hover td{
   background:rgba(35,43,49,.99) !important;
   color:#fff !important;
+  cursor:pointer;
+}
+.resultsCorner tbody tr.is-selected td{
+  background:rgba(40,49,56,.99) !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.03);
 }
 .resultsCorner td:nth-child(2){
   text-align:center;
@@ -626,8 +635,82 @@ body{font-size:16px}
   font-size:10.5px;
 }
 .resultsCorner tbody tr.pilot-selected td:first-child{
-  border-left-color:var(--red);
+  border-left-color:#46515a;
 }
+/* ===== Pilot result table: same compact 5-column layout as the reference ===== */
+.resultsCorner .pilotResultsTable{
+  table-layout:fixed;
+}
+.resultsCorner .pilotResultsTable th:nth-child(1),
+.resultsCorner .pilotResultsTable td:nth-child(1){width:29%}
+.resultsCorner .pilotResultsTable th:nth-child(2),
+.resultsCorner .pilotResultsTable td:nth-child(2){width:12%;text-align:center}
+.resultsCorner .pilotResultsTable th:nth-child(3),
+.resultsCorner .pilotResultsTable td:nth-child(3){width:20%;text-align:left}
+.resultsCorner .pilotResultsTable th:nth-child(4),
+.resultsCorner .pilotResultsTable td:nth-child(4){width:13%;text-align:center}
+.resultsCorner .pilotResultsTable th:nth-child(5),
+.resultsCorner .pilotResultsTable td:nth-child(5){width:26%}
+
+.resultsCorner .pilotResultsTable td:nth-child(3){
+  color:#edf0f2 !important;
+  font-size:11.5px;
+  font-weight:900;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.resultsCorner .pilotResultsTable td:nth-child(4){
+  color:var(--gold) !important;
+  font-weight:950;
+}
+.resultsCorner .pilotResultsTable td:nth-child(5){
+  text-align:right;
+  color:#d5dce0 !important;
+  font-family:Consolas,monospace;
+  font-size:10.5px;
+}
+.positionBadge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:34px;
+  padding:4px 7px;
+  border-radius:8px;
+  background:#162026;
+  border:1px solid #3a474f;
+  color:#f1f4f5;
+  font-weight:950;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
+}
+.pilotResultsTable tbody tr.pilot-berton td:first-child{border-left-color:#f2c94e}
+.pilotResultsTable tbody tr.pilot-henrique td:first-child{border-left-color:#4e8cff}
+.pilotResultsTable tbody tr.pilot-rose td:first-child{border-left-color:#9d4edd}
+.pilotResultsTable tbody tr.pilot-rex td:first-child{border-left-color:#21c76a}
+.pilotResultsTable tbody tr.pilot-guima td:first-child{border-left-color:#22c1d6}
+.pilotResultsTable tbody tr.pilot-robinho td:first-child{border-left-color:#f39c33}
+.pilotResultsTable tbody tr.pilot-nicolas td:first-child{border-left-color:#8a61d8}
+.pilotResultsTable tbody tr.pilot-guilherme td:first-child{border-left-color:#f2f2f2}
+.pilotResultsTable tbody tr.pilot-lucas td:first-child{border-left-color:#ef1721}
+.pilotResultsTable tbody tr.pilot-rian td:first-child{border-left-color:#ff4f9a}
+.pilotResultsTable tbody tr.pilot-caua td:first-child{border-left-color:#8d969d}
+.pilotResultsTable tbody tr.pilot-hiro td:first-child{border-left-color:#ff7a18}
+
+@media(max-width:700px){
+  .resultsCorner .pilotResultsTable th:nth-child(1),
+  .resultsCorner .pilotResultsTable td:nth-child(1){width:28%}
+  .resultsCorner .pilotResultsTable th:nth-child(2),
+  .resultsCorner .pilotResultsTable td:nth-child(2){width:13%}
+  .resultsCorner .pilotResultsTable th:nth-child(3),
+  .resultsCorner .pilotResultsTable td:nth-child(3){width:20%}
+  .resultsCorner .pilotResultsTable th:nth-child(4),
+  .resultsCorner .pilotResultsTable td:nth-child(4){width:13%}
+  .resultsCorner .pilotResultsTable th:nth-child(5),
+  .resultsCorner .pilotResultsTable td:nth-child(5){width:26%}
+  .resultsCorner .pilotResultsTable td:nth-child(3){font-size:9.8px}
+  .resultsCorner .pilotResultsTable td:nth-child(5){font-size:9px}
+}
+
 @media(max-width:700px){
   .resultsCorner .title{font-size:20px}
   .resultsCorner .dataBlock{max-height:340px;padding:6px 7px 8px}
@@ -637,13 +720,380 @@ body{font-size:16px}
   .resultsCorner td:nth-child(4){font-size:9px}
 }
 
+
+/* ===== Clickable tables / cards ===== */
+.champRaceCard{transition:transform .14s ease,box-shadow .14s ease}
+.champRaceCard:hover{box-shadow:0 7px 18px rgba(0,0,0,.25);transform:translateY(-1px)}
+.champRaceHead{position:relative}
+.champRaceHead:after{content:"⌁";float:right;color:#7f8a91;font-size:12px;opacity:.75}
+
+.champResultsTable tbody tr,
+.resultsCorner tbody tr,
+.champRaceRow{
+  cursor:pointer;
+  transition:transform .14s ease,background .14s ease,box-shadow .14s ease,filter .14s ease;
+}
+.champResultsTable tbody tr:hover,
+.resultsCorner tbody tr:hover,
+.champRaceRow:hover{
+  filter:brightness(1.08);
+}
+.champResultsTable tbody tr:active,
+.resultsCorner tbody tr:active,
+.champRaceRow:active{
+  transform:scale(.995);
+}
+.champResultsTable tbody tr.is-selected td,
+.resultsCorner tbody tr.is-selected td,
+.champRaceRow.is-selected{
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.18),0 0 0 1px rgba(239,23,33,.18);
+}
+.champRaceRow{
+  border-radius:9px;
+  padding:4px 5px;
+}
+.champRaceRow:hover{
+  background:rgba(255,255,255,.04);
+}
+.champResultsTable tbody tr::after,
+.resultsCorner tbody tr::after{
+  content:"›";
+  position:absolute;
+  right:8px;
+  opacity:0;
+  color:#fff;
+  font-size:16px;
+  font-weight:950;
+  transition:opacity .14s ease;
+}
+.champResultsTable tbody tr,
+.resultsCorner tbody tr{position:relative}
+.champResultsTable tbody tr:hover::after,
+.resultsCorner tbody tr:hover::after{opacity:.75}
+
+/* Result detail modal */
+.resultModal{
+  position:fixed;inset:0;z-index:2000;display:none;
+  align-items:center;justify-content:center;padding:18px;
+}
+.resultModal.open{display:flex}
+.resultModalBackdrop{
+  position:absolute;inset:0;background:rgba(2,5,7,.72);backdrop-filter:blur(8px);
+}
+.resultModalCard{
+  position:relative;z-index:2;width:min(560px,100%);
+  background:
+    radial-gradient(500px 180px at 10% 0%,rgba(239,23,33,.11),transparent 65%),
+    linear-gradient(145deg,#1c252b,#0b1014);
+  border:1px solid #46535c;border-radius:20px;
+  box-shadow:0 28px 80px rgba(0,0,0,.65),inset 0 1px 0 rgba(255,255,255,.06);
+  padding:24px;
+  animation:modalIn .16s ease-out;
+}
+@keyframes modalIn{
+  from{opacity:0;transform:translateY(10px) scale(.985)}
+  to{opacity:1;transform:none}
+}
+.resultModalClose{
+  position:absolute;right:12px;top:10px;width:36px;height:36px;border-radius:10px;
+  border:1px solid #46515a;background:#10171b;color:#fff;font-size:23px;line-height:1;cursor:pointer;
+}
+.resultModalKicker{
+  color:#a9b2b8;font-size:11px;font-weight:950;letter-spacing:.14em;text-transform:uppercase;
+}
+.resultModalCard h2{
+  margin:6px 42px 4px 0;font-size:30px;line-height:1.05;font-weight:950;
+}
+.resultModalAccent{
+  height:3px;width:88px;border-radius:999px;background:var(--red);margin:12px 0 18px;
+  box-shadow:0 0 15px rgba(239,23,33,.35);
+}
+.resultModalGrid{
+  display:grid;grid-template-columns:1fr 1fr;gap:9px;
+}
+.resultModalItem{
+  min-height:78px;padding:13px 14px;border-radius:13px;
+  background:rgba(8,13,16,.68);border:1px solid #2d383f;
+  display:flex;flex-direction:column;justify-content:center;gap:5px;
+}
+.resultModalItem.wide{grid-column:1/-1}
+.resultModalItem span{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:#929da5;font-weight:900}
+.resultModalItem strong{font-size:19px;font-weight:950}
+.resultModalItem:nth-child(1) strong{color:#f2cf4c}
+.resultModalItem:nth-child(4) strong{color:var(--gold)}
+.resultModalItem:nth-child(5) strong{font-family:Consolas,monospace}
+.resultModalActions{display:flex;gap:9px;margin-top:16px}
+.modalBtn{
+  flex:1;border:1px solid #48535b;background:#1a2227;color:#fff;border-radius:11px;
+  padding:11px 13px;font-weight:950;cursor:pointer;
+}
+.modalBtn:hover{filter:brightness(1.12)}
+.modalBtn.primary{background:var(--red);border-color:var(--red)}
+body.modal-open{overflow:hidden}
+@media(max-width:700px){
+  .resultModal{padding:10px}
+  .resultModalCard{padding:18px;border-radius:16px}
+  .resultModalCard h2{font-size:25px}
+  .resultModalGrid{grid-template-columns:1fr 1fr;gap:7px}
+  .resultModalItem{min-height:72px;padding:11px 10px}
+  .resultModalItem strong{font-size:16px}
+  .resultModalActions{flex-direction:column}
+}
+
+/* ===== RESULTADOS PAGE — race-focused ===== */
+.resultsLayout{display:grid;grid-template-columns:205px minmax(0,1fr);gap:12px;align-items:stretch}
+.resultsSidebar{padding:15px;min-height:700px;background:linear-gradient(145deg,rgba(16,25,30,.96),rgba(8,14,18,.96))}
+.resultsSideTitle{font-size:17px;font-weight:950;margin:2px 0 9px;display:flex;align-items:center;gap:7px}
+.resultsSideSep{height:1px;background:#2b343a;margin:19px 0}
+.resultsViewNote{margin-top:20px;color:#8f9aa2;font-size:10px;line-height:1.45}
+.resultsViewNote strong{font-size:10px;color:#aeb7bd;letter-spacing:.11em}
+.resultsViewNote p{margin:7px 0 0}
+.resultsMain{min-width:0;display:flex;flex-direction:column;gap:12px}
+.resultsPanel{min-height:650px;overflow:hidden}
+.resultsKpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:0 12px 8px}
+.resultKpi{min-height:80px;padding:12px 14px;border-radius:11px;background:rgba(9,16,20,.72);border:1px solid #2c383f;display:flex;flex-direction:column;justify-content:center}
+.resultKpi b{font-size:29px;font-weight:950;line-height:1;color:#f3f5f6}
+.resultKpi span{font-size:8px;letter-spacing:.09em;font-weight:950;color:#8f9aa2;margin-top:8px}
+.resultKpi.accent b{color:var(--gold)}
+.resultsHint{font-size:10px;color:#7f8a92;text-align:right;padding:0 13px 5px}
+.resultsTableScroll{height:485px;overflow:auto;padding:0 11px 11px;scrollbar-width:thin;scrollbar-color:#66717a #151b20}
+.resultsTableScroll::-webkit-scrollbar{width:8px}.resultsTableScroll::-webkit-scrollbar-track{background:#151b20;border-radius:8px}.resultsTableScroll::-webkit-scrollbar-thumb{background:#66717a;border-radius:8px}
+.resultsTableScroll table{width:100%;border-collapse:separate;border-spacing:0 4px;font-size:12px}
+.resultsTableScroll th{position:sticky;top:0;z-index:5;background:#11181c!important;color:#aab3b9!important;font-size:10px;font-weight:950;text-transform:uppercase;letter-spacing:.05em;padding:9px 8px;border:0}
+.resultsTableScroll td{padding:10px 8px;background:rgba(18,25,29,.96);color:#edf0f2;border-top:1px solid rgba(66,76,83,.5);border-bottom:1px solid rgba(8,11,13,.72);white-space:nowrap}
+.resultsTableScroll tbody tr{cursor:pointer;position:relative;transition:filter .14s ease,transform .14s ease}
+.resultsTableScroll tbody tr:hover td{background:rgba(31,41,47,.99)}
+.resultsTableScroll tbody tr:active{transform:scale(.998)}
+.resultsTableScroll tbody tr td:first-child{border-left:3px solid #46515a;border-radius:7px 0 0 7px;font-weight:950}
+.resultsTableScroll tbody tr td:last-child{border-radius:0 7px 7px 0}
+.resultsTableScroll td:nth-child(1){width:10%}
+.resultsTableScroll td:nth-child(2){width:23%;font-weight:950}
+.resultsTableScroll td:nth-child(3){width:36%;color:#c5ccd1}
+.resultsTableScroll td:nth-child(4){width:31%;text-align:right}
+.resultStatus{display:inline-flex;align-items:center;gap:5px;padding:5px 8px;border-radius:999px;background:#182127;border:1px solid #2b383f;font-size:10px;font-weight:950;color:#dfe5e8}
+.resultStatus.podium{color:#ffe07b;border-color:#695b28;background:#2b260e}
+.resultStatus.top5{color:#a9d4ff;border-color:#36526f;background:#121e29}
+.raceSummaryPanel{padding-bottom:12px}
+.raceSummaryGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;padding:0 11px}
+.summaryRaceCard{border:1px solid #29353c;background:linear-gradient(145deg,rgba(10,17,21,.96),rgba(7,13,16,.96));border-radius:11px;overflow:hidden}
+.summaryRaceHead{display:flex;justify-content:space-between;align-items:center;padding:10px 11px;border-bottom:1px solid #29353c;font-size:13px;font-weight:950}
+.summaryRaceHead small{font-size:9px;color:#89949c;font-weight:900}
+.summaryRaceBody{padding:7px 10px 9px}
+.summaryRaceRow{display:grid;grid-template-columns:25px 1fr auto;gap:7px;align-items:center;padding:8px 4px;border-radius:7px;cursor:pointer}
+.summaryRaceRow:hover{background:rgba(255,255,255,.035)}
+.summaryPlace{font-weight:950;color:#dfe4e7}
+.summaryName{font-size:11px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.summaryBadge{font-size:8px;text-transform:uppercase;font-weight:950;color:#8f99a0}
+.summaryBadge.podium{color:var(--gold)}
+.resultsTableScroll tbody tr.pilot-berton td:first-child{border-left-color:#f2c94e}
+.resultsTableScroll tbody tr.pilot-henrique td:first-child{border-left-color:#4e8cff}
+.resultsTableScroll tbody tr.pilot-rose td:first-child{border-left-color:#9d4edd}
+.resultsTableScroll tbody tr.pilot-rex td:first-child{border-left-color:#21c76a}
+.resultsTableScroll tbody tr.pilot-guima td:first-child{border-left-color:#22c1d6}
+.resultsTableScroll tbody tr.pilot-robinho td:first-child{border-left-color:#f39c33}
+.resultsTableScroll tbody tr.pilot-nicolas td:first-child{border-left-color:#8a61d8}
+.resultsTableScroll tbody tr.pilot-guilherme td:first-child{border-left-color:#f2f2f2}
+.resultsTableScroll tbody tr.pilot-lucas td:first-child{border-left-color:#ef1721}
+.resultsTableScroll tbody tr.pilot-rian td:first-child{border-left-color:#ff4f9a}
+.resultsTableScroll tbody tr.pilot-caua td:first-child{border-left-color:#8d969d}
+.resultsTableScroll tbody tr.pilot-hiro td:first-child{border-left-color:#ff7a18}
+@media(max-width:980px){.resultsLayout{grid-template-columns:1fr}.resultsSidebar{min-height:0}.resultsMain{width:100%}.resultsTableScroll{height:500px}.raceSummaryGrid{grid-template-columns:1fr}}
+@media(max-width:700px){
+ .resultsKpis{grid-template-columns:1fr 1fr}.resultKpi.accent{grid-column:1/-1}
+ .resultsPanel{min-height:0}.resultsTableScroll{height:520px;padding:0 7px 9px}
+ .resultsTableScroll table{font-size:9.5px;table-layout:fixed}
+ .resultsTableScroll th,.resultsTableScroll td{padding:7px 5px;white-space:normal;word-break:break-word}
+ .resultsTableScroll td:nth-child(1){width:15%}.resultsTableScroll td:nth-child(2){width:27%}.resultsTableScroll td:nth-child(3){width:33%}.resultsTableScroll td:nth-child(4){width:25%}
+ .resultStatus{font-size:8px;padding:4px 6px}
+ .resultsHint{text-align:left;padding-left:13px}
+}
+
+/* ===== RESULTADOS — mesma linguagem visual da classificação ===== */
+.resultsModelGrid{display:grid;grid-template-columns:245px minmax(0,1fr) 315px;gap:14px;align-items:start}
+.resultsModelSidebar{padding:14px;min-height:100%;background:linear-gradient(145deg,rgba(21,29,34,.94),rgba(9,14,18,.94))}
+.resultsModelSidebar .title{font-size:20px;padding:0 0 8px}
+.resultsModelSidebar .classificationSelect{margin-bottom:2px}
+.resultsModelHint{margin-top:24px;padding-top:16px;border-top:1px solid #2d363c;color:#919ca4;font-size:11px;line-height:1.45}
+.hintTitle{color:#b9c0c5;font-weight:950;letter-spacing:.12em;font-size:10px}
+.resultsModelHint p{margin:7px 0 12px}
+.hintMini{padding:10px 11px;border:1px solid #2d373e;border-radius:10px;background:rgba(7,12,15,.5);color:#a9b2b8}
+.resultsModelMain{display:flex;flex-direction:column;gap:14px;min-width:0}
+.resultsModelHero{overflow:hidden}
+.resultsModelHero>.title{font-size:24px;padding:14px 17px 9px}
+.resultsModelKpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:0 13px 9px}
+.resultsModelKpi{min-height:80px;padding:12px 15px;border-radius:12px;background:linear-gradient(145deg,#172126,#0c1317);border:1px solid #2e3a42;display:flex;flex-direction:column;justify-content:center}
+.resultsModelKpi span{font-size:9px;color:#89969e;font-weight:950;letter-spacing:.1em}
+.resultsModelKpi b{font-size:34px;line-height:1;margin-top:6px;font-weight:950}
+.resultsModelKpi.highlight b{color:var(--gold)}
+.resultsModelHintBar{font-size:10px;color:#818e96;text-align:right;padding:0 14px 5px}
+.resultsModelTable{height:450px;padding:0 10px 11px}
+.resultsModelTable table{font-size:12px}
+.resultsModelTable th{font-size:10px;padding:9px 8px}
+.resultsModelTable td{padding:10px 8px}
+.resultsModelTable td:nth-child(1){width:12%}
+.resultsModelTable td:nth-child(2){width:27%}
+.resultsModelTable td:nth-child(3){width:35%}
+.resultsModelTable td:nth-child(4){width:26%}
+.resultsSummaryModel{padding-bottom:12px}
+.resultsSummaryModel>.title{font-size:22px}
+.resultsHighlights,.resultsBreakdown{overflow:hidden}
+.resultsHighlights .title,.resultsBreakdown .title{font-size:20px;padding:13px 15px 9px}
+.resultsHighlightBody{padding:3px 12px 12px}
+.highlightRace{padding:11px 8px;border-bottom:1px solid #29343a}
+.highlightRace:last-child{border-bottom:0}
+.highlightRaceHead{display:flex;justify-content:space-between;gap:8px;font-size:12px;font-weight:950}
+.highlightRaceHead small{color:#7f8b93;font-size:9px}
+.highlightWinner{display:grid;grid-template-columns:30px 1fr auto;gap:8px;align-items:center;margin-top:8px;padding:8px 9px;border-radius:9px;background:#11191d;border:1px solid #2c383f}
+.highlightWinner .bigPlace{font-size:17px;font-weight:950;color:var(--gold)}
+.highlightWinner .winnerName{font-size:13px;font-weight:950}
+.highlightWinner .winnerTag{font-size:9px;font-weight:950;color:#97a2a9;text-transform:uppercase}
+.breakRow{display:grid;grid-template-columns:84px 1fr 28px;gap:8px;align-items:center;margin:9px 12px}
+.breakLabel{font-size:10px;font-weight:900;color:#aeb7bd}
+.breakBar{height:9px;background:#20292e;border-radius:999px;overflow:hidden}
+.breakBar i{display:block;height:100%;border-radius:999px}
+.breakCount{text-align:right;color:#dfe4e7;font-size:11px;font-weight:950}
+@media(max-width:1200px){.resultsModelGrid{grid-template-columns:230px minmax(0,1fr)}.resultsModelRight{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:14px}}
+@media(max-width:900px){.resultsModelGrid{grid-template-columns:1fr}.resultsModelRight{grid-column:auto;display:flex;flex-direction:column}.resultsModelSidebar{min-height:0}.resultsModelTable{height:480px}}
+@media(max-width:700px){.resultsModelKpis{grid-template-columns:1fr 1fr}.resultsModelKpi.highlight{grid-column:1/-1}.resultsModelHero>.title{font-size:20px}.resultsModelHintBar{text-align:left}.resultsModelTable{height:520px;padding:0 7px 9px}.resultsModelTable table{font-size:9.5px;table-layout:fixed}.resultsModelTable th,.resultsModelTable td{padding:7px 5px;white-space:normal;word-break:break-word}.resultsModelTable td:nth-child(1){width:15%}.resultsModelTable td:nth-child(2){width:27%}.resultsModelTable td:nth-child(3){width:33%}.resultsModelTable td:nth-child(4){width:25%}.resultsSummaryModel>.title{font-size:20px}}
+
+/* ===== RESULTS PAGE — FINAL VISUAL POLISH ===== */
+.resultsModelGrid{grid-template-columns:225px minmax(0,1fr) 300px;gap:12px}
+.resultsModelSidebar{
+  background:linear-gradient(145deg,rgba(19,27,32,.97),rgba(9,15,18,.97));
+  border-color:#2d3940;
+}
+.resultsModelSidebar .title{
+  color:#f1f4f5;
+  font-size:19px;
+  padding:2px 0 9px;
+  letter-spacing:-.2px;
+}
+.resultsModelSidebar .classificationSelect{
+  width:100%;
+  height:42px;
+  padding:0 38px 0 12px;
+  border:1px solid #46535b;
+  border-radius:10px;
+  background-color:#0e171b;
+  color:#eef2f3;
+  font-size:13px;
+  font-weight:900;
+  appearance:none;
+  -webkit-appearance:none;
+  color-scheme:dark;
+  cursor:pointer;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.03);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M3 4.5 6 7.5 9 4.5' fill='none' stroke='%23c5cdd1' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 12px center;
+}
+.resultsModelSidebar .classificationSelect:hover{border-color:#6a7780;background-color:#111c21}
+.resultsModelSidebar .classificationSelect:focus{outline:none;border-color:#7d8991;box-shadow:0 0 0 2px rgba(239,23,33,.14)}
+.resultsModelHint{margin-top:22px;padding-top:15px;color:#8f9ba3}
+.hintMini{
+  background:#0d1519;
+  border:1px solid #2f3a41;
+  color:#aeb7bc;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.02);
+}
+.resultsModelHero,
+.resultsSummaryModel,
+.resultsHighlights,
+.resultsBreakdown{
+  background:linear-gradient(145deg,rgba(24,31,36,.97),rgba(9,14,17,.97));
+  border-color:#2d3940;
+}
+.resultsModelHero>.title{font-size:23px}
+.resultsModelKpi{
+  background:linear-gradient(145deg,#131d22,#0c1418);
+  border-color:#304048;
+}
+.resultsModelHintBar{color:#7e8b93}
+.resultsModelTable{padding:0 9px 10px}
+.resultsModelTable table{border-spacing:0 4px}
+.resultsModelTable th{
+  background:#11181c!important;
+  color:#96a2aa!important;
+}
+.resultsModelTable td{
+  background:rgba(14,22,26,.97)!important;
+  color:#edf1f2!important;
+  border-top:1px solid rgba(53,65,73,.55);
+  border-bottom:1px solid rgba(4,8,10,.9);
+}
+.resultsModelTable tbody tr:nth-child(even) td,
+.resultsModelTable tbody tr:nth-child(odd) td{background:rgba(14,22,26,.97)!important;color:#edf1f2!important}
+.resultsModelTable tbody tr:hover td{background:#18242a!important;color:#fff!important}
+.resultsSummaryModel>.title{font-size:22px}
+.raceSummaryGrid{gap:10px}
+.summaryRaceCard{
+  background:linear-gradient(145deg,#111b20,#0a1115);
+  border-color:#2d3940;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.025);
+}
+.summaryRaceHead{
+  background:rgba(14,21,25,.62);
+  border-bottom-color:#29353c;
+}
+.summaryRaceBody{padding:5px 9px 10px}
+.summaryRaceRow{
+  grid-template-columns:32px minmax(0,1fr) 78px;
+  gap:7px;
+  min-height:36px;
+  padding:7px 6px;
+  border-top:1px solid rgba(44,55,62,.34);
+  transition:background .14s ease,transform .14s ease;
+}
+.summaryRaceRow:first-child{border-top:0}
+.summaryRaceRow:hover{background:rgba(255,255,255,.045);transform:translateX(1px)}
+.summaryPlace{font-size:14px;color:#e7ecee}
+.summaryName{font-size:11px;font-weight:950;color:#f1f3f4}
+.summaryBadge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  min-height:22px;
+  padding:4px 7px;
+  border-radius:999px;
+  border:1px solid #35424a;
+  background:#111b20;
+  color:#98a5ad;
+  text-align:center;
+  font-size:8px;
+  letter-spacing:.03em;
+}
+.summaryBadge.podium{
+  background:#2b260e;
+  border-color:#66591f;
+  color:#f1d45d;
+}
+/* Status text gets its own visual treatment without introducing mismatched colors. */
+.summaryBadge.podium:before{content:'✦ ';opacity:.8}
+.summaryRaceRow .summaryBadge:not(.podium):not(:empty){color:#9da9b0}
+.resultsHighlights .title,.resultsBreakdown .title{color:#f1f4f5}
+.highlightRace{background:transparent}
+.highlightWinner{
+  background:#10191e;
+  border-color:#2d3940;
+}
+.breakRow{margin:10px 12px}
+.breakBar{background:#1b252a}
+@media(max-width:1200px){.resultsModelGrid{grid-template-columns:220px minmax(0,1fr) 280px}}
+@media(max-width:900px){.resultsModelGrid{grid-template-columns:1fr}.resultsModelSidebar{order:0}.resultsModelMain{order:1}.resultsModelRight{order:2}}
+@media(max-width:700px){
+  .resultsModelSidebar .classificationSelect{height:40px;font-size:12px}
+  .summaryRaceRow{grid-template-columns:28px minmax(0,1fr) 76px;padding:6px 5px}
+  .summaryBadge{font-size:7.5px;min-height:21px;padding:4px 5px}
+}
+
 </style>
 </head>
 <body>
 <div class="app">
 <header class="top">
  <div class="brand"><div class="cup">🏆</div><h1>COPA <span>TDP</span></h1></div>
- <div class="nav"><button id="nChamp" class="active" onclick="showPage('champ')">📊 Classificação Geral</button><button id="nPilot" onclick="showPage('pilot')">🏎️ Piloto</button></div>
+ <div class="nav"><button id="nChamp" class="active" onclick="showPage('champ')">🏆 Classificação Geral</button><button id="nPilot" onclick="showPage('pilot')">🏎️ Piloto</button><button id="nResults" onclick="showPage('results')">🏁 Resultados</button></div>
 </header>
 
 
@@ -655,7 +1105,7 @@ body{font-size:16px}
       <div id="racesBox"></div>
     </div>
     <div class="sep"></div>
-    <div class="slicerTitle">👤 Selecionar Piloto</div>
+    <div class="slicerTitle">🏎️ Selecionar Piloto</div>
     <div class="slicerSection">
       <div class="filterTools">
         <button class="btn red" onclick="allPilots()">Selecionar todos</button>
@@ -669,7 +1119,7 @@ body{font-size:16px}
   <main class="champMain">
     <div class="champKpis">
       <div class="panel champKpi"><div class="label">🏁 Total de Corridas</div><div class="num" id="kRaces">0</div></div>
-      <div class="panel champKpi"><div class="label">👥 Total de Pilotos</div><div class="num" id="kDrivers">0</div></div>
+      <div class="panel champKpi"><div class="label">🏎️ Total de Pilotos</div><div class="num" id="kDrivers">0</div></div>
       <div class="panel champKpi champLeader">
         <div class="champLeaderIcon">🏆</div>
         <div><div class="champLeaderLabel">Líder do Campeonato</div><div class="champLeaderName" id="kLeaderName">—</div><div class="champLeaderPts" id="kLeaderPts">0 pts</div></div>
@@ -679,7 +1129,7 @@ body{font-size:16px}
     <div class="panel champTop3"><div class="title">🏆 Top 3 do Campeonato</div><div class="champPodium" id="podium"></div></div>
 
     <div class="panel block">
-      <div class="title">📈 Evolução do Top 5 no Campeonato</div>
+      <div class="title">🏁 Evolução do Top 5 no Campeonato</div>
       <div class="champEvoWrap">
         <div class="champEvoChart" id="top5Chart"></div>
         <div class="champEvoLegend" id="top5Legend"></div>
@@ -687,14 +1137,14 @@ body{font-size:16px}
     </div>
 
     <div class="panel block">
-      <div class="title">📊 Pontos por Corrida</div>
+      <div class="title">🏁 Pontos por Corrida</div>
       <div class="champRaceGrid" id="raceGrid"></div>
     </div>
   </main>
 
   <aside class="champRight">
     <div class="panel champRightPanel">
-      <div class="title">📊 Classificação Geral</div>
+      <div class="title">🏆 Classificação Geral</div>
       <div class="champRank" id="ranking"></div>
     </div>
 
@@ -704,9 +1154,61 @@ body{font-size:16px}
     </div>
   </aside>
 </div>
+
 </section>
 
+<section id="results" class="page">
+  <div class="resultsModelGrid">
+    <aside class="panel resultsModelSidebar">
+      <div class="title">🏁 Corrida</div>
+      <select id="resultsRaceFilter" class="classificationSelect">
+        <option value="ALL">Todas as corridas</option>
+      </select>
 
+      <div class="sep"></div>
+
+      <div class="title">🏎️ Piloto</div>
+      <select id="resultsPilotFilter" class="classificationSelect">
+        <option value="ALL">Todos os pilotos</option>
+      </select>
+
+      <div class="resultsModelHint">
+        <div class="hintTitle">VISÃO DA ETAPA</div>
+        <p>Escolha uma corrida ou piloto para atualizar todos os elementos da página.</p>
+        <div class="hintMini">Clique em qualquer resultado ou cartão para abrir os detalhes.</div>
+      </div>
+    </aside>
+
+    <main class="resultsModelMain">
+      <div class="panel resultsModelHero">
+        <div class="title">🏁 Resultados das Corridas</div>
+        <div class="resultsModelKpis">
+          <div class="resultsModelKpi"><span>REGISTROS</span><b id="resultsCount">0</b></div>
+          <div class="resultsModelKpi"><span>PILOTOS</span><b id="resultsDrivers">0</b></div>
+          <div class="resultsModelKpi highlight"><span>PÓDIOS</span><b id="resultsPodiums">0</b></div>
+        </div>
+        <div class="resultsModelHintBar">Clique em uma linha para abrir o resultado selecionado.</div>
+        <div class="resultsTableScroll resultsModelTable" id="resultsTable"></div>
+      </div>
+
+      <div class="panel resultsSummaryModel">
+        <div class="title">🏎️ Resumo das Etapas</div>
+        <div class="raceSummaryGrid" id="resultsSummary"></div>
+      </div>
+    </main>
+
+    <aside class="resultsModelRight">
+      <div class="panel resultsHighlights">
+        <div class="title">🏆 Destaques da Etapa</div>
+        <div id="resultsHighlights"></div>
+      </div>
+      <div class="panel resultsBreakdown">
+        <div class="title">📋 Distribuição de Resultados</div>
+        <div id="resultsBreakdown"></div>
+      </div>
+    </aside>
+  </div>
+</section>
 
 <section id="pilot" class="page">
   <div class="pilotRef">
@@ -730,31 +1232,31 @@ body{font-size:16px}
 
     <div class="pilotMetricGrid">
       <div class="pilotMetric">
-        <div class="micon">🏆</div><div class="mlabel">Pontos</div><div class="mvalue" id="pPts">0</div>
+        <div class="micon">🪙</div><div class="mlabel">Pontos</div><div class="mvalue" id="pPts">0</div>
       </div>
       <div class="pilotMetric">
-        <div class="micon">🏁</div><div class="mlabel">Corridas</div><div class="mvalue" id="pRace">0</div>
+        <div class="micon">🛞</div><div class="mlabel">Corridas</div><div class="mvalue" id="pRace">0</div>
       </div>
       <div class="pilotMetric">
         <div class="micon">⏱️</div><div class="mlabel">Melhor tempo</div><div class="mvalue" id="pBest">—</div>
       </div>
       <div class="pilotMetric">
-        <div class="micon">🥇</div><div class="mlabel">Melhor posição</div><div class="mvalue" id="pBestPos">—</div>
+        <div class="micon">🏅</div><div class="mlabel">Melhor posição</div><div class="mvalue" id="pBestPos">—</div>
       </div>
       <div class="pilotMetric">
-        <div class="micon">🏎️</div><div class="mlabel">Vitórias</div><div class="mvalue" id="pWins">0</div>
+        <div class="micon">🚀</div><div class="mlabel">Vitórias</div><div class="mvalue" id="pWins">0</div>
       </div>
       <div class="pilotMetric">
-        <div class="micon">📊</div><div class="mlabel">Posição no campeonato</div><div class="mvalue" id="pRank">—</div>
+        <div class="micon">🧭</div><div class="mlabel">Posição no campeonato</div><div class="mvalue" id="pRank">—</div>
       </div>
       <div class="pilotMetric">
-        <div class="micon">📊</div><div class="mlabel">Média de pontos</div><div class="mvalue" id="mAvg">—</div>
+        <div class="micon">🧮</div><div class="mlabel">Média de pontos</div><div class="mvalue" id="mAvg">—</div>
       </div>
       <div class="pilotMetric">
-        <div class="micon">〽️</div><div class="mlabel">Consistência</div><div class="mvalue" id="mCons">—</div>
+        <div class="micon">🛞</div><div class="mlabel">Consistência</div><div class="mvalue" id="mCons">—</div>
       </div>
       <div class="pilotMetric">
-        <div class="micon">🎯</div><div class="mlabel">Taxa de pódio</div><div class="mvalue" id="mPodium">—</div>
+        <div class="micon">🏆</div><div class="mlabel">Taxa de pódio</div><div class="mvalue" id="mPodium">—</div>
       </div>
 
       <div class="pilotChooser">
@@ -766,12 +1268,12 @@ body{font-size:16px}
 
   <div class="pilotVizRow">
     <div class="panel pilotViz">
-      <div class="title"><span class="redIcon">💯</span> PONTOS POR CORRIDA</div>
+      <div class="title"><span class="redIcon">💥</span> PONTOS POR CORRIDA</div>
       <div class="pilotChart" id="pilotPointsRaceChart"></div>
     </div>
 
     <div class="panel pilotViz">
-      <div class="title"><span class="redIcon">⌁</span> EVOLUÇÃO DE POSIÇÕES</div>
+      <div class="title"><span class="redIcon">📍</span> EVOLUÇÃO DE POSIÇÕES</div>
       <div class="positionChartWrap">
         <div class="pilotChart" id="pilotEvo"></div>
         <div class="positionNote">ⓘ<br><br>Quanto mais alto no gráfico,<br>melhor a posição.<br><br>O eixo é invertido (1º no topo).</div>
@@ -781,17 +1283,39 @@ body{font-size:16px}
 
   <div class="pilotLowerRef">
     <div class="panel resultsCorner">
-      <div class="title">🏁 RESULTADOS DAS CORRIDAS</div>
+      <div class="title">🧾 RESULTADOS DAS CORRIDAS</div>
       <div class="dataBlock" id="pilotTable"></div>
     </div>
 
     <div class="panel quoteRef">
       <div class="bigQuote">“</div>
       <p>Cada volta<br>é uma chance<br>de ser melhor.</p>
-      <div class="helmetMark">🏎️</div>
+      <div class="helmetMark">🏁</div>
     </div>
   </div>
 </section>
+
+
+<!-- ===== CLICKABLE RESULT DETAIL MODAL ===== -->
+<div id="resultModal" class="resultModal" aria-hidden="true">
+  <div class="resultModalBackdrop" onclick="closeResultModal()"></div>
+  <div class="resultModalCard" role="dialog" aria-modal="true" aria-labelledby="resultModalTitle">
+    <button class="resultModalClose" type="button" onclick="closeResultModal()" aria-label="Fechar">×</button>
+    <div class="resultModalKicker">🏁 DETALHES DO RESULTADO</div>
+    <h2 id="resultModalTitle">Resultado</h2>
+    <div id="resultModalAccent" class="resultModalAccent"></div>
+    <div class="resultModalGrid">
+      <div class="resultModalItem"><span>🏅 Posição</span><strong id="modalPos">—</strong></div>
+      <div class="resultModalItem"><span>🏎️ Piloto</span><strong id="modalPilot">—</strong></div>
+      <div class="resultModalItem wide"><span>🏁 Corrida</span><strong id="modalRace">—</strong></div>
+      <div class="resultModalItem wide"><span>🎖️ Resultado</span><strong id="modalStatus">—</strong></div>
+    </div>
+    <div class="resultModalActions">
+      <button type="button" class="modalBtn primary" onclick="openModalPilot()">🏎️ Ver piloto</button>
+      <button type="button" class="modalBtn" onclick="applyModalRace()">🏁 Selecionar corrida</button>
+    </div>
+  </div>
+</div>
 
 <div class="footer">COPA TDP • Dashboard independente • Dados incorporados dos arquivos enviados</div>
 </div>
@@ -883,7 +1407,7 @@ function readableTop5Chart(series,labels,colors,maxY){
 }
 function syncRacePills(){document.querySelectorAll("#racesBox .racePill").forEach(el=>{const cb=el.querySelector("input");el.classList.toggle("on",cb.checked);});}
 function selected(id){return[...document.querySelectorAll(`#${id} input:checked`)].map(x=>x.value)}
-function showPage(id){document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");document.getElementById("nChamp").classList.toggle("active",id==="champ");document.getElementById("nPilot").classList.toggle("active",id==="pilot")}
+function showPage(id){document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");document.getElementById("nChamp").classList.toggle("active",id==="champ");document.getElementById("nPilot").classList.toggle("active",id==="pilot");document.getElementById("nResults").classList.toggle("active",id==="results");if(id==="results")updateResults()}
 function allRaces(){document.querySelectorAll("#racesBox input").forEach(x=>x.checked=true);syncRacePills();updateChamp()}
 function noneRaces(){document.querySelectorAll("#racesBox input").forEach(x=>x.checked=false);syncRacePills();updateChamp()}
 function allPilots(){document.querySelectorAll("#pilotsBox input").forEach(x=>x.checked=true);updateChamp()}
@@ -917,7 +1441,7 @@ function updateChamp(){
 
   const max=st[0]?.[1]||1;
   document.getElementById("ranking").innerHTML=st.length?st.map((x,i)=>
-    `<div class="champRankRow">
+    `<div class="champRankRow" tabindex="0" data-pilot-nav="${esc(x[0])}" aria-label="Abrir página do piloto ${esc(x[0])}">
       <div class="champRankNo">${i+1}</div>
       <div class="champRankName">${esc(x[0])}</div>
       <div class="champRankBar"><i style="width:${x[1]/max*100}%;background:${pilotColor(x[0])}"></i></div>
@@ -943,19 +1467,24 @@ function updateChamp(){
   const sorted=rows.slice().sort((a,b)=>Number(b.pontos)-Number(a.pontos)||(posMap[a.posicao]||99)-(posMap[b.posicao]||99)||a.piloto.localeCompare(b.piloto));
   document.getElementById("resultTable").innerHTML=sorted.length?`<table>
     <thead><tr><th>POS.</th><th>PILOTO</th><th>CORRIDA</th><th>PTS</th><th>MELHOR VOLTA</th></tr></thead>
-    <tbody>${sorted.map(x=>`<tr class="pilot-${String(x.piloto).toLowerCase()}">
+    <tbody>${sorted.map((x,idx)=>`<tr tabindex="0" class="pilot-${String(x.piloto).toLowerCase()}"
+      data-detail-pilot="${esc(x.piloto)}" data-detail-race="${esc(x.raceKey)}" data-detail-source="geral" aria-label="Ver detalhes de ${esc(x.piloto)} em ${esc(x.raceKey)}">
       <td><strong>${posMap[x.posicao]||"—"}º</strong></td><td>${esc(x.piloto)}</td><td>${esc(x.raceKey)}</td>
       <td>${x.pontos}</td><td>${esc(x.volta)}</td>
     </tr>`).join("")}</tbody></table>`:`<div class="empty">Sem dados</div>`;
 
   const raceGrid=document.getElementById("raceGrid");
-  raceGrid.innerHTML=rs.map(r=>{
+  raceGrid.innerHTML=rs.map((r,ri)=>{
     const rr=rows.filter(x=>x.raceKey===r).sort((a,b)=>Number(b.pontos)-Number(a.pontos)||a.piloto.localeCompare(b.piloto));
     const mx=Math.max(1,...rr.map(x=>Number(x.pontos)));
+    const raceEmojis=["🏁","⚡","🏎️","🔥","🌪️","🎬","🛞","🏆"];
+    const raceEmoji=raceEmojis[ri%raceEmojis.length];
     return `<div class="champRaceCard">
-      <div class="champRaceHead">🏁 ${esc(r)}</div>
+      <div class="champRaceHead">${raceEmoji} ${esc(r)}</div>
       <div class="champRaceBody">${rr.slice(0,6).map(x=>
-        `<div class="champRaceRow">
+        `<div class="champRaceRow" tabindex="0"
+          data-detail-pilot="${esc(x.piloto)}" data-detail-race="${esc(x.raceKey)}" data-detail-source="pontos"
+          aria-label="Ver resultado de ${esc(x.piloto)} em ${esc(x.raceKey)}">
           <div class="champRaceDot" style="background:${pilotColor(x.piloto)}"></div>
           <div class="champRaceName">${esc(x.piloto)}</div>
           <div class="champRacePts">${x.pontos}</div>
@@ -1008,9 +1537,16 @@ function updatePilot(){
   }else{ph.style.display="none";fb.style.display="grid"}
 
   document.getElementById("pilotTable").innerHTML=rows.length?`
-  <table><thead><tr><th>CORRIDA</th><th>POSIÇÃO</th><th>PONTOS</th><th>MELHOR VOLTA</th></tr></thead>
+  <table class="pilotResultsTable"><thead><tr><th>CORRIDA</th><th>POSIÇÃO</th><th>PILOTO</th><th>PONTOS</th><th>MELHOR VOLTA</th></tr></thead>
   <tbody>${RACES.map(r=>rows.find(x=>x.raceKey===r)).filter(Boolean).map(x=>
-    `<tr class="pilot-selected"><td>${esc(x.raceKey)}</td><td><strong>${posMap[x.posicao]||"—"}º</strong></td><td>${x.pontos}</td><td>${esc(x.volta)}</td></tr>`
+    `<tr tabindex="0" class="pilot-selected pilot-${String(x.piloto).toLowerCase()}" data-detail-pilot="${esc(x.piloto)}" data-detail-race="${esc(x.raceKey)}" data-detail-source="piloto"
+      aria-label="Ver resultado de ${esc(x.piloto)} em ${esc(x.raceKey)}">
+      <td>${esc(x.raceKey)}</td>
+      <td><strong class="positionBadge">${posMap[x.posicao]||"—"}º</strong></td>
+      <td>${esc(x.piloto)}</td>
+      <td>${x.pontos}</td>
+      <td>${esc(x.volta)}</td>
+    </tr>`
   ).join("")}</tbody></table>`:`<div class="empty">Sem dados</div>`;
 
   // Red bar chart: actual points earned in each race.
@@ -1065,11 +1601,179 @@ function updatePilot(){
 }
 
 
+
+
+/* ===== Results page ===== */
+function positionStatus(n){
+  if(n===1)return '<span class="resultStatus podium">🏆 Vitória</span>';
+  if(n<=3)return '<span class="resultStatus podium">🥇 Pódio</span>';
+  if(n<=5)return '<span class="resultStatus top5">🏎️ Top 5</span>';
+  return '<span class="resultStatus">🏁 Classificado</span>';
+}
+function updateResults(){
+  const raceSel=document.getElementById('resultsRaceFilter');
+  const pilotSel=document.getElementById('resultsPilotFilter');
+  if(!raceSel||!pilotSel)return;
+  const raceVal=raceSel.value, pilotVal=pilotSel.value;
+  const rows=DATA.filter(x=>(raceVal==='ALL'||x.raceKey===raceVal)&&(pilotVal==='ALL'||x.piloto===pilotVal))
+    .slice().sort((a,b)=>RACES.indexOf(a.raceKey)-RACES.indexOf(b.raceKey)||(posMap[a.posicao]||99)-(posMap[b.posicao]||99)||a.piloto.localeCompare(b.piloto));
+  const podiums=rows.filter(x=>(posMap[x.posicao]||99)<=3).length;
+  const top5=rows.filter(x=>(posMap[x.posicao]||99)<=5).length;
+  document.getElementById('resultsCount').textContent=rows.length;
+  document.getElementById('resultsDrivers').textContent=new Set(rows.map(x=>x.piloto)).size;
+  document.getElementById('resultsPodiums').textContent=podiums;
+  document.getElementById('resultsTable').innerHTML=rows.length?`<table><thead><tr><th>POS.</th><th>PILOTO</th><th>CORRIDA</th><th>RESULTADO</th></tr></thead><tbody>${rows.map(x=>{
+    const n=posMap[x.posicao]||99;
+    return `<tr tabindex="0" class="pilot-${String(x.piloto).toLowerCase()}" data-detail-pilot="${esc(x.piloto)}" data-detail-race="${esc(x.raceKey)}" data-detail-source="resultados"><td><strong>${n<99?n+'º':'—'}</strong></td><td>${esc(x.piloto)}</td><td>${esc(x.raceKey)}</td><td>${positionStatus(n)}</td></tr>`;
+  }).join('')}</tbody></table>`:`<div class="empty">Sem dados para os filtros selecionados</div>`;
+
+  const summaryRaces=(raceVal==='ALL'?RACES:RACES.filter(r=>r===raceVal));
+  document.getElementById('resultsSummary').innerHTML=summaryRaces.map(r=>{
+    const rr=DATA.filter(x=>x.raceKey===r && (pilotVal==='ALL'||x.piloto===pilotVal)).slice().sort((a,b)=>(posMap[a.posicao]||99)-(posMap[b.posicao]||99));
+    const icon=r.includes('DREAM')?'🏎️':'🏁';
+    return `<div class="summaryRaceCard"><div class="summaryRaceHead"><span>${icon} ${esc(r)}</span><small>${rr.length} pilotos</small></div><div class="summaryRaceBody">${rr.map(x=>{const n=posMap[x.posicao]||99;return `<div class="summaryRaceRow pilot-${String(x.piloto).toLowerCase()}" tabindex="0" data-detail-pilot="${esc(x.piloto)}" data-detail-race="${esc(x.raceKey)}" data-detail-source="resumo"><div class="summaryPlace">${n<99?n+'º':'—'}</div><div class="summaryName">${esc(x.piloto)}</div><div class="summaryBadge ${n<=3?'podium':''}">${n===1?'Vitória':n<=3?'Pódio':n<=5?'Top 5':'Classificado'}</div></div>`;}).join('')||'<div class="empty">Sem dados</div>'}</div></div>`;
+  }).join('');
+
+  const visibleRaces=summaryRaces;
+  document.getElementById('resultsHighlights').innerHTML=visibleRaces.length?`<div class="resultsHighlightBody">${visibleRaces.map(r=>{
+    const rr=DATA.filter(x=>x.raceKey===r && (pilotVal==='ALL'||x.piloto===pilotVal)).slice().sort((a,b)=>(posMap[a.posicao]||99)-(posMap[b.posicao]||99));
+    const winner=rr[0];
+    return `<div class="highlightRace"><div class="highlightRaceHead"><span>🏁 ${esc(r)}</span><small>${rr.length} participantes</small></div>${winner?`<div class="highlightWinner" tabindex="0" data-detail-pilot="${esc(winner.piloto)}" data-detail-race="${esc(winner.raceKey)}" data-detail-source="destaque"><div class="bigPlace">1º</div><div class="winnerName">${esc(winner.piloto)}</div><div class="winnerTag">Vitória</div></div>`:'<div class="empty">Sem dados</div>'}</div>`;
+  }).join('')}</div>`:`<div class="empty">Sem dados</div>`;
+
+  const total=rows.length||1;
+  const buckets=[
+    ['Vitórias',rows.filter(x=>(posMap[x.posicao]||99)===1).length,'#f2c94e'],
+    ['Pódios',rows.filter(x=>(posMap[x.posicao]||99)>=2&&(posMap[x.posicao]||99)<=3).length,'#a6b0b7'],
+    ['Top 5',rows.filter(x=>(posMap[x.posicao]||99)>=4&&(posMap[x.posicao]||99)<=5).length,'#4fb2ff'],
+    ['Demais',rows.filter(x=>(posMap[x.posicao]||99)>=6).length,'#69757d']
+  ];
+  document.getElementById('resultsBreakdown').innerHTML=buckets.map(([label,count,color])=>`<div class="breakRow"><div class="breakLabel">${label}</div><div class="breakBar"><i style="width:${Math.min(100,count/total*100)}%;background:${color}"></i></div><div class="breakCount">${count}</div></div>`).join('')+`<div class="breakRow"><div class="breakLabel">Top 5</div><div class="breakBar"><i style="width:${Math.min(100,top5/total*100)}%;background:#19d64d"></i></div><div class="breakCount">${top5}</div></div>`;
+}
+
+/* ===== Navigation from Classification ranking to Pilot page ===== */
+function goToPilot(pilot){
+  const sel=document.getElementById("pilotSelect");
+  if(!sel || !pilot)return;
+  sel.value=pilot;
+  showPage("pilot");
+  updatePilot();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+/* ===== Interactive result selection ===== */
+let modalSelection = null;
+
+function findResult(pilot, race){
+  return DATA.find(x=>x.piloto===pilot && x.raceKey===race) || null;
+}
+
+function openResultDetail(pilot, race, source=""){
+  const row=findResult(pilot,race);
+  if(!row)return;
+
+  modalSelection={...row,source};
+
+  document.getElementById("modalPilot").textContent=row.piloto;
+  document.getElementById("modalRace").textContent=row.raceKey;
+  const resultN=posMap[row.posicao]||99;
+  document.getElementById("modalPos").textContent=(resultN<99?resultN:"—")+"º";
+  document.getElementById("modalStatus").textContent=resultN===1?"Vitória":resultN<=3?"Pódio":resultN<=5?"Top 5":"Classificado";
+  document.getElementById("resultModalTitle").textContent=row.raceKey;
+
+  const accent=document.getElementById("resultModalAccent");
+  accent.style.background=pilotColor(row.piloto);
+  accent.style.boxShadow=`0 0 18px ${pilotColor(row.piloto)}55`;
+
+  document.getElementById("resultModal").classList.add("open");
+  document.getElementById("resultModal").setAttribute("aria-hidden","false");
+  document.body.classList.add("modal-open");
+
+  document.querySelectorAll(".is-selected").forEach(el=>el.classList.remove("is-selected"));
+  document.querySelectorAll(`[data-detail-pilot="${CSS.escape(pilot)}"][data-detail-race="${CSS.escape(race)}"]`)
+    .forEach(el=>el.classList.add("is-selected"));
+
+  setTimeout(()=>document.querySelector(".resultModalClose")?.focus(),20);
+}
+
+function closeResultModal(){
+  const m=document.getElementById("resultModal");
+  if(!m)return;
+  m.classList.remove("open");
+  m.setAttribute("aria-hidden","true");
+  document.body.classList.remove("modal-open");
+  document.querySelectorAll(".is-selected").forEach(el=>el.classList.remove("is-selected"));
+}
+
+function openModalPilot(){
+  if(!modalSelection)return;
+  const sel=document.getElementById("pilotSelect");
+  sel.value=modalSelection.piloto;
+  showPage("pilot");
+  updatePilot();
+  closeResultModal();
+}
+
+function applyModalRace(){
+  if(!modalSelection)return;
+  const race=modalSelection.raceKey;
+  document.querySelectorAll("#racesBox input").forEach(input=>input.checked=(input.value===race));
+  document.querySelectorAll("#pilotsBox input").forEach(input=>input.checked=(input.value===modalSelection.piloto));
+  updateChamp();
+  showPage("champ");
+  closeResultModal();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+document.addEventListener("click", (ev)=>{
+  const pilotNav=ev.target.closest("[data-pilot-nav]");
+  if(pilotNav){
+    goToPilot(pilotNav.dataset.pilotNav);
+    return;
+  }
+  const head=ev.target.closest(".champRaceHead");
+  if(head){
+    const card=head.closest(".champRaceCard");
+    const first=card?.querySelector("[data-detail-pilot][data-detail-race]");
+    if(first){ openResultDetail(first.dataset.detailPilot,first.dataset.detailRace,"corrida"); }
+    return;
+  }
+  const el=ev.target.closest("[data-detail-pilot][data-detail-race]");
+  if(el){
+    openResultDetail(el.dataset.detailPilot,el.dataset.detailRace,el.dataset.detailSource||"");
+    return;
+  }
+  if(ev.target.id==="resultModal") closeResultModal();
+});
+
+document.addEventListener("keydown",(ev)=>{
+  const pilotNav=ev.target.closest?.("[data-pilot-nav]");
+  if(pilotNav && (ev.key==="Enter" || ev.key===" ")){
+    ev.preventDefault();
+    goToPilot(pilotNav.dataset.pilotNav);
+    return;
+  }
+  if(ev.key==="Escape" && document.getElementById("resultModal")?.classList.contains("open")){
+    closeResultModal();return;
+  }
+  const el=ev.target.closest?.("[data-detail-pilot][data-detail-race]");
+  if(el && (ev.key==="Enter" || ev.key===" ")){
+    ev.preventDefault();
+    openResultDetail(el.dataset.detailPilot,el.dataset.detailRace,el.dataset.detailSource||"");
+  }
+});
+
 function init(){
+ const resultsRace=document.getElementById("resultsRaceFilter");
+ const resultsPilot=document.getElementById("resultsPilotFilter");
+ RACES.forEach(r=>resultsRace?.insertAdjacentHTML("beforeend",`<option value="${esc(r)}">${esc(r)}</option>`));
+ PILOTS.forEach(p=>resultsPilot?.insertAdjacentHTML("beforeend",`<option value="${esc(p)}">${esc(p)}</option>`));
+ resultsRace?.addEventListener("change",updateResults);
+ resultsPilot?.addEventListener("change",updateResults);
  const rc=document.getElementById("racesBox");RACES.forEach(r=>rc.insertAdjacentHTML("beforeend",`<label class="chk"><input type="checkbox" value="${esc(r)}" checked onchange="updateChamp()"> ${esc(r)}</label>`));
  const pc=document.getElementById("pilotsBox");PILOTS.forEach(p=>pc.insertAdjacentHTML("beforeend",`<label class="chk"><input type="checkbox" value="${esc(p)}" onchange="updateChamp()"> ${esc(p)}</label>`));
  const sel=document.getElementById("pilotSelect");PILOTS.forEach(p=>sel.insertAdjacentHTML("beforeend",`<option value="${esc(p)}">${esc(p)}</option>`));sel.onchange=updatePilot;
- updateChamp();updatePilot();
+ updateChamp();updatePilot();updateResults();
 }
 init();
 </script>
