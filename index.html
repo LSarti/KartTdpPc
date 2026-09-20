@@ -127,6 +127,7 @@ td:first-child{font-weight:900}
   display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:auto;padding-top:18px;border-top:1px solid #3a4248
 }
 .heroMini .mini{text-align:center}.heroMini b{display:block;font-size:23px}.heroMini span{font-size:11px;color:#9ca4ab}
+.heroMini .mini:last-child b{color:var(--gold)}
 .pilotMetricGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .pilotMetric{
   min-height:108px;padding:14px;border-radius:15px;
@@ -171,7 +172,7 @@ td:first-child{font-weight:900}
  .pilotMetricGrid{grid-template-columns:1fr 1fr}.pilotChooser{grid-template-columns:1fr}
  .positionChartWrap{padding-right:0}.positionNote{display:none}
 }
-@media(max-width:520px){.pilotMetricGrid{grid-template-columns:1fr}.heroMini{grid-template-columns:1fr}}
+@media(max-width:520px){.pilotMetricGrid{grid-template-columns:1fr}.heroMini{grid-template-columns:repeat(2,1fr);gap:8px}}
 
 
 /* Pilot page cleanup and reference layout */
@@ -406,6 +407,9 @@ body{font-size:16px}
 
 
 @media(max-width:700px){
+  .heroMini{grid-template-columns:repeat(4,1fr);gap:4px}
+  .heroMini .mini b{font-size:19px}
+  .heroMini .mini span{font-size:9px}
   .title{font-size:21px}
   .slicerTitle{font-size:19px}
   .champKpi .label{font-size:12px}
@@ -1087,6 +1091,114 @@ body.modal-open{overflow:hidden}
   .summaryBadge{font-size:7.5px;min-height:21px;padding:4px 5px}
 }
 
+
+/* ===== TITLE PROBABILITY ===== */
+.titleProbability{
+  margin-top:12px;
+  background:
+    radial-gradient(520px 170px at 6% 0%,rgba(239,23,33,.08),transparent 68%),
+    linear-gradient(145deg,rgba(28,35,40,.94),rgba(10,15,18,.94));
+  border:1px solid rgba(67,76,83,.95);
+}
+.titleProbability .title{
+  display:flex;align-items:center;gap:8px;
+  border-bottom:1px solid rgba(70,78,84,.55);
+}
+.probabilityBody{
+  display:grid;
+  grid-template-columns:1.05fr 1fr;
+  gap:14px;
+  padding:13px 15px 15px;
+}
+.probWinnerBox{
+  min-height:142px;
+  padding:17px 18px;
+  border:1px solid #39464e;
+  border-radius:13px;
+  background:
+    radial-gradient(circle at 15% 0%,rgba(243,207,78,.15),transparent 45%),
+    linear-gradient(145deg,rgba(12,20,24,.92),rgba(7,12,15,.94));
+  display:flex;flex-direction:column;justify-content:center;
+}
+.probKicker{
+  color:#9ca7ae;font-size:10px;font-weight:950;letter-spacing:.12em;text-transform:uppercase;
+}
+.probWinnerName{
+  font-size:31px;font-weight:950;line-height:1.05;margin-top:5px;
+}
+.probWinnerPct{
+  color:var(--gold);font-size:38px;font-weight:950;line-height:1;margin-top:8px;
+}
+.probMeta{
+  color:#8f9aa2;font-size:10px;margin-top:9px;line-height:1.4;
+}
+.probList{
+  min-width:0;
+  padding:2px 0;
+}
+.probListHead{
+  display:grid;grid-template-columns:24px 90px 1fr 42px;gap:8px;
+  color:#7f8a92;font-size:9px;font-weight:950;text-transform:uppercase;
+  letter-spacing:.05em;margin:0 4px 7px;
+}
+.probRow{
+  display:grid;grid-template-columns:24px 90px 1fr 42px;gap:8px;align-items:center;
+  padding:6px 4px;border-radius:8px;cursor:pointer;
+}
+.probRow:hover{background:rgba(255,255,255,.035)}
+.probPos{font-size:11px;font-weight:950;color:#aeb7bd;text-align:center}
+.probName{font-size:11px;font-weight:950;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.probTrack{height:9px;background:#202a2f;border-radius:999px;overflow:hidden}
+.probTrack i{display:block;height:100%;border-radius:999px}
+.probPct{text-align:right;font-size:11px;font-weight:950;color:#dce2e5}
+.probNote{
+  margin-top:8px;color:#68747c;font-size:9px;line-height:1.35;
+}
+.champKpis + .titleProbability{margin-top:12px}
+@media(max-width:960px){
+  .probabilityBody{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+  .probabilityBody{padding:10px 10px 12px;gap:9px}
+  .probWinnerBox{min-height:118px;padding:14px}
+  .probWinnerName{font-size:27px}
+  .probWinnerPct{font-size:34px}
+  .probListHead{grid-template-columns:22px 76px 1fr 38px;font-size:8px}
+  .probRow{grid-template-columns:22px 76px 1fr 38px;padding:6px 2px}
+  .probName{font-size:10px}
+  .probPct{font-size:10px}
+}
+
+/* ===== Title chance placement: general page right rail + pilot percentage card ===== */
+.rightProbability{margin-top:0}
+.rightProbability .title{font-size:20px;padding:13px 15px 9px}
+.rightProbability .probabilityBody{grid-template-columns:1fr;gap:10px;padding:10px 12px 12px}
+.rightProbability .probWinnerBox{min-height:122px;padding:14px 15px}
+.rightProbability .probWinnerName{font-size:28px}
+.rightProbability .probWinnerPct{font-size:36px}
+.rightProbability .probMeta{font-size:9px}
+.rightProbability .probList{max-height:205px;overflow:auto;padding-right:2px}
+.rightProbability .probListHead{grid-template-columns:22px 78px 1fr 40px;font-size:8px}
+.rightProbability .probRow{grid-template-columns:22px 78px 1fr 40px;padding:5px 3px}
+.rightProbability .probName{font-size:10px}
+.rightProbability .probPct{font-size:10px}
+.titleChancePilot{display:flex;align-items:center;justify-content:center;min-height:250px;padding:18px;
+  background:
+    radial-gradient(circle at 50% 25%,rgba(243,207,78,.11),transparent 46%),
+    linear-gradient(145deg,rgba(13,20,24,.94),rgba(8,12,15,.94));
+  border:1px solid rgba(67,76,83,.95);
+  box-shadow:0 10px 28px rgba(0,0,0,.48);
+}
+.pilotChanceLabel{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#aab4bb;font-weight:950;margin-bottom:10px;text-align:center}.pilotChancePct{font-size:78px;line-height:1;font-weight:950;color:var(--gold);letter-spacing:-3px;text-shadow:0 4px 18px rgba(0,0,0,.45)}
+@media(max-width:1050px){.rightProbability .probabilityBody{grid-template-columns:1fr 1fr}.rightProbability .probList{max-height:none}}
+@media(max-width:700px){
+  .rightProbability .title{font-size:19px}
+  .rightProbability .probabilityBody{grid-template-columns:1fr;gap:8px}
+  .rightProbability .probList{max-height:240px}
+  .titleChancePilot{min-height:170px}
+  .pilotChancePct{font-size:64px}
+}
+
 </style>
 </head>
 <body>
@@ -1146,6 +1258,19 @@ body.modal-open{overflow:hidden}
     <div class="panel champRightPanel">
       <div class="title">🏆 Classificação Geral</div>
       <div class="champRank" id="ranking"></div>
+    </div>
+
+    <div class="panel titleProbability rightProbability">
+      <div class="title">🏆 Chance Estimada de Título</div>
+      <div class="probabilityBody">
+        <div class="probWinnerBox">
+          <div class="probKicker">PROVÁVEL CAMPEÃO APÓS 10 CORRIDAS</div>
+          <div class="probWinnerName" id="probWinnerName">—</div>
+          <div class="probWinnerPct" id="probWinnerPct">—</div>
+          <div class="probMeta" id="probMeta">—</div>
+        </div>
+        <div class="probList" id="probList"></div>
+      </div>
     </div>
 
     <div class="panel champRightResults">
@@ -1226,6 +1351,7 @@ body.modal-open{overflow:hidden}
           <div class="mini"><b id="pRaceMini">0</b><span>corridas</span></div>
           <div class="mini"><b id="pPtsMini">0</b><span>pontos</span></div>
           <div class="mini"><b id="pWinsMini">0</b><span>vitórias</span></div>
+          <div class="mini"><b id="pilotTitleProb">—%</b><span>chance de título</span></div>
         </div>
       </div>
     </div>
@@ -1423,7 +1549,68 @@ function lineChart(series,labels,colors,maxY,withValues=false){
  return s+"</svg>";
 }
 
+
+function updateTitleProbability(){
+  const TOTAL_RACES=10;
+  const completed=RACES.length;
+  const remaining=Math.max(0,TOTAL_RACES-completed);
+
+  const all=standings(DATA);
+  if(!all.length){
+    document.getElementById("probWinnerName").textContent="—";
+    document.getElementById("probWinnerPct").textContent="—";
+    document.getElementById("probMeta").textContent="Sem dados suficientes.";
+    document.getElementById("probList").innerHTML=`<div class="empty">Sem dados</div>`;
+    return;
+  }
+
+  // Projection: current points + expected points over the remaining races.
+  // A light shrinkage toward the championship average avoids over-weighting pilots
+  // who have only one recorded start.
+  const observed=DATA.map(x=>Number(x.pontos));
+  const fieldMean=observed.length ? observed.reduce((a,b)=>a+b,0)/observed.length : 0;
+  const PRIOR=2;
+
+  const projections=all.map(([pilot,current])=>{
+    const history=DATA.filter(x=>x.piloto===pilot).map(x=>Number(x.pontos));
+    const n=history.length;
+    const avg=n ? (history.reduce((a,b)=>a+b,0)+PRIOR*fieldMean)/(n+PRIOR) : fieldMean;
+    return {pilot,current:Number(current),avg,projected:Number(current)+avg*remaining};
+  });
+
+  // Convert projected totals into a transparent "estimated title chance".
+  // The temperature keeps the result from becoming artificially certain with only 3 races observed.
+  const maxProjected=Math.max(...projections.map(x=>x.projected));
+  const TEMP=16;
+  const weights=projections.map(x=>Math.exp((x.projected-maxProjected)/TEMP));
+  const z=weights.reduce((a,b)=>a+b,0)||1;
+  projections.forEach((x,i)=>x.prob=weights[i]/z*100);
+  projections.sort((a,b)=>b.prob-a.prob||b.projected-a.projected);
+  window.TITLE_PROBS=Object.fromEntries(projections.map(x=>[x.pilot,x.prob]));
+
+  const winner=projections[0];
+  document.getElementById("probWinnerName").textContent=winner.pilot;
+  document.getElementById("probWinnerPct").textContent=winner.prob.toFixed(0)+"%";
+  document.getElementById("probMeta").textContent=
+    `${remaining} ${remaining===1?"corrida restante":"corridas restantes"} • projeção: ${winner.projected.toFixed(1)} pts • baseada no histórico atual`;
+
+  const top=Math.min(6,projections.length);
+  const maxProb=Math.max(1,projections[0].prob);
+  document.getElementById("probList").innerHTML=
+    `<div class="probListHead"><span>#</span><span>PILOTO</span><span>CHANCE ESTIMADA</span><span>%</span></div>`+
+    projections.slice(0,top).map((x,i)=>
+      `<div class="probRow" data-pilot-nav="${esc(x.pilot)}" tabindex="0" aria-label="Abrir página do piloto ${esc(x.pilot)}">
+        <div class="probPos">${i+1}</div>
+        <div class="probName">${esc(x.pilot)}</div>
+        <div class="probTrack"><i style="width:${Math.min(100,x.prob/maxProb*100)}%;background:${pilotColor(x.pilot)}"></i></div>
+        <div class="probPct">${x.prob.toFixed(0)}%</div>
+      </div>`
+    ).join("")+
+    `<div class="probNote">Estimativa de referência, não uma previsão oficial: usa os pontos atuais e a média histórica por corrida para projetar as 10 etapas.</div>`;
+}
+
 function updateChamp(){
+  updateTitleProbability();
   const rs=selected("racesBox"), ps=selected("pilotsBox");
   const rows=DATA.filter(x=>rs.includes(x.raceKey)&&(ps.length===0||ps.includes(x.piloto)));
   const st=standings(rows);
@@ -1502,6 +1689,11 @@ function htmlTable(rows){
 
 function updatePilot(){
   const p=document.getElementById("pilotSelect").value;
+  const pilotProbEl=document.getElementById("pilotTitleProb");
+  if(pilotProbEl){
+    const prob=(window.TITLE_PROBS&&window.TITLE_PROBS[p]!==undefined)?window.TITLE_PROBS[p]:0;
+    pilotProbEl.textContent=prob.toFixed(0)+"%";
+  }
   const rows=DATA.filter(x=>x.piloto===p);
   const st=standings(DATA);
   const rank=st.findIndex(x=>x[0]===p)+1;
