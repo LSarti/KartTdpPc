@@ -776,6 +776,28 @@ body{font-size:16px}
 .champResultsTable tbody tr:hover::after,
 .resultsCorner tbody tr:hover::after{opacity:.75}
 
+
+/* Title probability calculation detail modal */
+.probDetailModal{position:fixed;inset:0;z-index:2100;display:none;align-items:center;justify-content:center;padding:18px}
+.probDetailModal.open{display:flex}
+.probDetailBackdrop{position:absolute;inset:0;background:rgba(2,5,7,.74);backdrop-filter:blur(8px)}
+.probDetailCard{position:relative;z-index:2;width:min(650px,100%);max-height:90vh;overflow:auto;background:radial-gradient(500px 180px at 10% 0%,rgba(239,23,33,.11),transparent 65%),linear-gradient(145deg,#1c252b,#0b1014);border:1px solid #46535c;border-radius:20px;box-shadow:0 28px 80px rgba(0,0,0,.65),inset 0 1px 0 rgba(255,255,255,.06);padding:24px}
+.probDetailClose{position:absolute;right:12px;top:10px;width:36px;height:36px;border-radius:10px;border:1px solid #46515a;background:#10171b;color:#fff;font-size:23px;line-height:1;cursor:pointer}
+.probDetailKicker{color:#a9b2b8;font-size:11px;font-weight:950;letter-spacing:.14em;text-transform:uppercase}
+.probDetailCard h2{margin:6px 42px 4px 0;font-size:30px;line-height:1.05;font-weight:950}
+.probDetailAccent{height:3px;width:88px;border-radius:999px;background:var(--red);margin:12px 0 18px}
+.probDetailGrid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.probDetailItem{min-height:78px;padding:13px 14px;border-radius:13px;background:rgba(8,13,16,.68);border:1px solid #2d383f;display:flex;flex-direction:column;justify-content:center;gap:5px}
+.probDetailItem.wide{grid-column:1/-1}
+.probDetailItem span{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:#929da5;font-weight:900}
+.probDetailItem strong{font-size:19px;font-weight:950}
+.probDetailItem small{font-size:10px;color:#78848c;line-height:1.35}
+.probDetailExplanation{margin-top:13px;padding:13px 14px;border-radius:13px;background:rgba(8,13,16,.5);border:1px solid #2d383f;color:#b6c0c6;font-size:11px;line-height:1.55}
+.probDetailActions{display:flex;gap:9px;margin-top:16px}
+.probDetailBtn{flex:1;border:1px solid #48535b;background:#1a2227;color:#fff;border-radius:11px;padding:11px 13px;font-weight:950;cursor:pointer}
+.probDetailBtn:hover{filter:brightness(1.12)}
+@media(max-width:650px){.probDetailGrid{grid-template-columns:1fr}.probDetailItem.wide{grid-column:auto}.probDetailCard{padding:20px 16px}.probDetailCard h2{font-size:26px}}
+
 /* Result detail modal */
 .resultModal{
   position:fixed;inset:0;z-index:2000;display:none;
@@ -844,6 +866,39 @@ body.modal-open{overflow:hidden}
   .resultModalItem strong{font-size:16px}
   .resultModalActions{flex-direction:column}
 }
+
+
+/* ===== SIMULAÇÃO PAGE ===== */
+.simLayout{display:grid;grid-template-columns:245px minmax(0,1fr);gap:13px;align-items:start}
+.simSidebar{padding:15px;min-height:700px;background:linear-gradient(145deg,rgba(16,25,30,.96),rgba(8,14,18,.96))}
+.simSideTitle{font-size:17px;font-weight:950;margin:2px 0 9px}
+.simSelect{width:100%;background:#11171b;color:#fff;border:1px solid #46515a;border-radius:9px;padding:10px 11px;font-weight:900}
+.priorButtons{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.priorBtn{background:#11171b;color:#cbd2d7;border:1px solid #46515a;border-radius:9px;padding:9px 6px;font-weight:900;cursor:pointer;transition:.15s}
+.priorBtn:hover{border-color:#f2c94e;color:#fff}
+.priorBtn.active{background:#f2c94e;color:#11171b;border-color:#f2c94e;box-shadow:0 0 12px #f2c94e33}
+.simHint{margin-top:14px;color:#87939b;font-size:10px;line-height:1.5}
+.simMain{display:grid;gap:13px}
+.simKpis{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
+.simKpi{padding:14px 15px;min-height:96px}
+.simKpi .label{font-size:10px;color:#a7b0b7;text-transform:uppercase;letter-spacing:.05em;font-weight:950}
+.simKpi .value{font-size:29px;font-weight:950;margin-top:5px}
+.simKpi .note{font-size:9px;color:#7e8991;margin-top:3px}
+.simCharts{display:grid;grid-template-columns:1.35fr 1fr;gap:13px}
+.simChartPanel{padding-bottom:10px}
+.simChart{height:290px;padding:0 10px 6px}
+.simLegendItem{display:flex;align-items:center;gap:6px}
+.simLegendDot{width:9px;height:9px;border-radius:50%;display:inline-block}
+.simPercentiles{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;padding:0 13px 13px}
+.simPercentile{background:#151b20;border:1px solid #2c353b;border-radius:10px;padding:10px;text-align:center}
+.simPercentile span{display:block;font-size:9px;color:#87919a;text-transform:uppercase;font-weight:900}
+.simPercentile strong{display:block;font-size:18px;margin-top:4px}
+.simStability{padding:0 14px 14px}
+.simStabilityChart{height:210px}
+.simExplanation{padding:14px 16px;color:#aeb8bf;font-size:11px;line-height:1.55}
+.simExplanation b{color:#fff}
+@media(max-width:1100px){.simLayout{grid-template-columns:1fr}.simSidebar{min-height:auto}.simCharts{grid-template-columns:1fr}.simKpis{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:650px){.simKpis{grid-template-columns:1fr}.simPercentiles{grid-template-columns:repeat(2,1fr)}}
 
 /* ===== RESULTADOS PAGE — race-focused ===== */
 .resultsLayout{display:grid;grid-template-columns:205px minmax(0,1fr);gap:12px;align-items:stretch}
@@ -1200,13 +1255,45 @@ body.modal-open{overflow:hidden}
   .pilotChancePct{font-size:64px}
 }
 
+
+/* ===== METODOLOGIA / COMO FUNCIONA ===== */
+.howPage{display:grid;gap:14px}
+.howHero{padding:25px 28px;background:radial-gradient(650px 180px at 8% 0%,rgba(239,23,33,.11),transparent 65%),linear-gradient(145deg,rgba(24,31,36,.96),rgba(10,15,18,.96));}
+.howEyebrow{font-size:11px;letter-spacing:.15em;color:#aab3b9;font-weight:950;text-transform:uppercase}
+.howHero h2{font-size:38px;margin:8px 0 7px;line-height:1.02}
+.howHero p{max-width:860px;color:#b8c0c5;font-size:15px;line-height:1.5;margin:0}
+.howGrid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.howCard{padding:19px 20px;position:relative;min-height:170px}
+.howCard.howWide{grid-column:1/-1}
+.howNum{position:absolute;right:15px;top:12px;font-size:10px;color:#647078;letter-spacing:.12em;font-weight:950}
+.howCard h3{margin:0 35px 8px 0;font-size:21px}
+.howCard p{margin:7px 0;color:#b6c0c6;font-size:13px;line-height:1.5}
+.howSmall{font-size:11px!important;color:#87939b!important}
+.howFormula{margin-top:10px;padding:11px 12px;border-radius:10px;background:#0d1418;border:1px solid #2c373e;color:#d6dde1;font-size:12px;line-height:1.45}
+.howScoreGrid{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;margin-top:11px}
+.howScoreGrid div{padding:11px 5px;text-align:center;background:#0e1519;border:1px solid #2b363d;border-radius:9px}
+.howScoreGrid b{display:block;font-size:18px;color:#f2cf4c}.howScoreGrid span{font-size:11px;color:#98a3aa}
+.howPrior{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.howPrior div{padding:10px;border-radius:10px;border:1px solid #303a41;background:#10171b}
+.howPrior div.selected{border-color:#f2cf4e;box-shadow:inset 0 0 0 1px rgba(242,207,78,.12)}
+.howPrior b{display:block;font-size:14px;color:#f2cf4e;margin-bottom:4px}.howPrior span{display:block;color:#a9b3b9;font-size:11px;line-height:1.4}
+.howFlow{display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;margin-top:13px}
+.howFlow span{padding:9px 12px;background:#10171b;border:1px solid #303a41;border-radius:999px;font-size:11px;font-weight:900;color:#e4e8ea}.howFlow i{color:#69757d;font-style:normal;font-weight:950}
+.howPercentileTable{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:10px}
+.howPercentileTable div{background:#10171b;border:1px solid #2c373e;border-radius:9px;padding:9px;text-align:center}
+.howPercentileTable b{display:block;font-size:13px;color:#f2cf4c}.howPercentileTable span{display:block;font-size:9px;line-height:1.3;color:#8e999f;margin-top:4px}
+.howImportant{margin-top:10px;padding:15px;border-radius:12px;background:linear-gradient(145deg,#121a1f,#0b1115);border:1px solid #39464e}
+.howImportant b{font-size:28px;color:#f2cf4c}.howImportant p{margin:5px 0;font-size:13px}
+@media(max-width:900px){.howGrid{grid-template-columns:1fr}.howCard.howWide{grid-column:auto}.howHero h2{font-size:30px}.howScoreGrid{grid-template-columns:repeat(4,1fr)}.howPercentileTable{grid-template-columns:1fr 1fr}.howPercentileTable div:last-child{grid-column:1/-1}.howPrior{grid-template-columns:1fr}}
+@media(max-width:560px){.howHero{padding:19px 16px}.howHero h2{font-size:26px}.howHero p{font-size:13px}.howCard{padding:15px 14px}.howCard h3{font-size:18px}.howScoreGrid{grid-template-columns:repeat(3,1fr)}.howFlow{gap:6px}.howFlow span{font-size:10px;padding:8px 9px}}
+
 </style>
 </head>
 <body>
 <div class="app">
 <header class="top">
  <div class="brand"><div class="cup">🏆</div><h1>COPA <span>TDP</span></h1></div>
- <div class="nav"><button id="nChamp" class="active" onclick="showPage('champ')">🏆 Classificação Geral</button><button id="nPilot" onclick="showPage('pilot')">🏎️ Piloto</button><button id="nResults" onclick="showPage('results')">🏁 Resultados</button></div>
+ <div class="nav"><button id="nChamp" class="active" onclick="showPage('champ')">🏆 Classificação Geral</button><button id="nPilot" onclick="showPage('pilot')">🏎️ Piloto</button><button id="nSim" onclick="showPage('sim')">🔬 Simulação</button><button id="nResults" onclick="showPage('results')">🏁 Resultados</button><button id="nHow" onclick="showPage('how')">📖 Como funciona</button></div>
 </header>
 
 
@@ -1281,6 +1368,171 @@ body.modal-open{overflow:hidden}
   </aside>
 </div>
 
+</section>
+
+<section id="sim" class="page">
+  <div class="simLayout">
+    <aside class="panel simSidebar">
+      <div class="simSideTitle">🔬 Ver as simulações</div>
+      <select id="simPilotSelect" class="simSelect" onchange="renderSimulationPage()"></select>
+      <div class="sep"></div>
+      <div class="simSideTitle">🧮 Ajuste estatístico</div>
+      <div class="priorButtons" id="positionPriorButtons">
+        <button type="button" class="priorBtn" data-prior="1" onclick="changePositionPrior(1)">Prior 1</button>
+        <button type="button" class="priorBtn" data-prior="2" onclick="changePositionPrior(2)">Prior 2</button>
+        <button type="button" class="priorBtn active" data-prior="3" onclick="changePositionPrior(3)">Prior 3</button>
+      </div>
+      <div class="simHint"><b>Prior 1:</b> pouca correção — confia mais no histórico do piloto.<br><b>Prior 2:</b> correção moderada — equilíbrio entre histórico e média do campo.<br><b>Prior 3:</b> mais correção — dá mais peso à média do campo quando o histórico é curto.<br><b>Atual:</b> Prior 3.</div>
+      <div class="simSideTitle">🕒 Peso de recência</div>
+      <div class="simHint"><b>1ª corrida:</b> 1,0 &nbsp;•&nbsp; <b>2ª:</b> 1,1 &nbsp;•&nbsp; <b>3ª:</b> 1,2. A cada nova corrida, o peso seguinte aumenta 0,1. Isso dá mais importância à forma atual sem usar uma “tendência” separada.</div>
+      <div class="sep"></div>
+      <div class="simSideTitle">📌 Cenário atual</div>
+      <div id="simScenario" class="simHint">—</div>
+      <div class="simHint">Os gráficos desta página usam as mesmas <b>200.000 simulações</b> que calculam a chance de título. Em vez de desenhar 200 mil pontos individuais, os resultados são agrupados para você enxergar a distribuição completa sem deixar a dashboard pesada.</div>
+    </aside>
+
+    <main class="simMain">
+      <div class="simKpis">
+        <div class="panel simKpi"><div class="label">🏆 Chance de título</div><div class="value" id="simKpiProb">—</div><div class="note">simulações em que foi campeão</div></div>
+        <div class="panel simKpi"><div class="label">📊 Pontos finais</div><div class="value" id="simKpiProjected">—</div><div class="note">média das 200 mil simulações</div></div>
+        <div class="panel simKpi"><div class="label">🏁 Posição final</div><div class="value" id="simKpiPosition">—</div><div class="note">média nas simulações</div></div>
+        <div class="panel simKpi"><div class="label">🏎️ Participações</div><div class="value" id="simKpiParticipation">—</div><div class="note">média nas 7 corridas restantes</div></div>
+      </div>
+
+      <div class="simCharts">
+        <div class="panel simChartPanel"><div class="title">📊 Distribuição dos pontos finais</div><div class="simChart" id="simPointsChart"></div><div style="padding:0 15px 7px;font-size:10px;color:#8d979e"><span class="simLegendDot" style="background:var(--gold)"></span> Todas as 200.000 simulações estão representadas por estas colunas.</div></div>
+        <div class="panel simChartPanel"><div class="title">🏁 Posição final nas 200.000 simulações</div><div class="simChart" id="simPositionChart"></div></div>
+      </div>
+
+      <div class="panel simChartPanel"><div class="title">🏎️ Quantas das 7 corridas o piloto deve disputar?</div><div class="simChart" id="simParticipationChart"></div></div>
+
+      <div class="panel simChartPanel"><div class="title">📈 Estabilidade da chance ao longo das 200.000 simulações</div><div class="simStability"><div class="simStabilityChart" id="simStabilityChart"></div></div></div>
+
+      <div class="panel simChartPanel"><div class="title">🎯 Faixa de resultados</div><div class="simPercentiles" id="simPercentiles"></div></div>
+
+      <div class="panel simChartPanel"><div class="title">💡 Como ler este painel</div><div class="simExplanation" id="simExplanation">—</div></div>
+    </main>
+  </div>
+</section>
+
+
+<section id="how" class="page">
+  <div class="howPage">
+    <div class="panel howHero">
+      <div class="howEyebrow">📖 COMO FUNCIONA A DASHBOARD</div>
+      <h2>Entenda de onde vem cada número</h2>
+      <p>Esta página explica, em linguagem simples, como a classificação, os pontos, a chance de título e os números da página <b>Simulação</b> são calculados.</p>
+    </div>
+
+    <div class="howGrid">
+      <article class="panel howCard">
+        <div class="howNum">01</div><h3>🏁 Pontos atuais</h3>
+        <p>Somamos os pontos que o piloto já ganhou nas corridas realizadas.</p>
+        <div class="howFormula"><b>Exemplo:</b> 5 + 10 + 3 = <strong>18 pontos</strong></div>
+      </article>
+
+      <article class="panel howCard">
+        <div class="howNum">02</div><h3>🏆 Classificação geral</h3>
+        <p>A classificação é feita somente com os pontos reais do campeonato. O Prior e as simulações <b>não alteram</b> a classificação atual.</p>
+      </article>
+
+      <article class="panel howCard howWide">
+        <div class="howNum">03</div><h3>🎯 Como a posição vira pontos</h3>
+        <div class="howScoreGrid">
+          <div><b>1º</b><span>10 pts</span></div><div><b>2º</b><span>7 pts</span></div><div><b>3º</b><span>5 pts</span></div>
+          <div><b>4º</b><span>3 pts</span></div><div><b>5º</b><span>2 pts</span></div><div><b>6º</b><span>1 pt</span></div>
+          <div><b>7º+</b><span>0 pts</span></div>
+        </div>
+      </article>
+
+      <article class="panel howCard">
+        <div class="howNum">04</div><h3>👥 Participação</h3>
+        <p>Para os pilotos em geral, usamos diretamente o histórico:</p>
+        <div class="howFormula"><b>3 de 3</b> = 100% &nbsp;•&nbsp; <b>2 de 3</b> = 66,7% &nbsp;•&nbsp; <b>1 de 3</b> = 33,3%</div>
+        
+      </article>
+
+      <article class="panel howCard">
+        <div class="howNum">05</div><h3>📏 Desempenho relativo</h3>
+        <p>Como o número de pilotos pode mudar entre corridas, não usamos apenas a posição bruta. Transformamos a posição em uma escala de <b>0% a 100%</b>.</p>
+        <div class="howFormula">1º = 100% &nbsp;•&nbsp; último = 0% &nbsp;•&nbsp; os demais ficam entre esses valores</div>
+      </article>
+
+      <article class="panel howCard">
+        <div class="howNum">06</div><h3>↕️ Variação</h3>
+        <p>Também medimos o quanto os resultados costumam oscilar. Um piloto com resultados parecidos tem pouca variação; um piloto que alterna muito entre posições tem mais variação.</p>
+      </article>
+
+      <article class="panel howCard">
+        <div class="howNum">07</div><h3>🕒 Peso de recência</h3>
+        <p>As corridas mais novas têm um pouco mais de peso:</p>
+        <div class="howFormula"><b>1ª</b> = 1,0 &nbsp;•&nbsp; <b>2ª</b> = 1,1 &nbsp;•&nbsp; <b>3ª</b> = 1,2</div>
+        <p class="howSmall">A cada nova corrida, o próximo peso aumenta 0,1. Isso considera a forma mais recente sem criar um fator separado de “evolução”.</p>
+      </article>
+
+      <article class="panel howCard">
+        <div class="howNum">08</div><h3>🧩 Prior 1, 2 e 3</h3>
+        <p>O Prior é uma pequena correção para evitar que um histórico muito curto seja tratado como certeza.</p>
+        <div class="howPrior"><div><b>Prior 1</b><span>Pouca correção. Confia mais no histórico.</span></div><div><b>Prior 2</b><span>Correção moderada. Equilíbrio entre histórico e campo.</span></div><div class="selected"><b>Prior 3</b><span>Mais correção. Dá mais peso à média do campo.</span></div></div>
+        <p class="howSmall"><b>Padrão atual: Prior 3.</b> O Prior só entra na projeção; ele não muda a classificação real.</p>
+      </article>
+
+      <article class="panel howCard howWide">
+        <div class="howNum">09</div><h3>🏆 Chance de título</h3>
+        <p>Primeiro pegamos os pontos atuais. Depois simulamos as <b>7 corridas restantes</b>. Em cada corrida, o modelo decide quem participa e, para quem participa, sorteia um desempenho baseado no histórico do piloto.</p>
+        <div class="howFlow"><span>Participa?</span><i>→</i><span>Desempenho</span><i>→</i><span>Posição</span><i>→</i><span>Pontos</span><i>→</i><span>Total do campeonato</span></div>
+      </article>
+
+      <article class="panel howCard">
+        <div class="howNum">10</div><h3>🔁 200.000 campeonatos</h3>
+        <p>Esse processo é repetido <b>200.000 vezes</b>. Cada repetição é um possível campeonato completo.</p>
+        <div class="howFormula"><b>Chance de título</b> = campeonatos em que foi campeão ÷ 200.000</div>
+      </article>
+
+      <article class="panel howCard">
+        <div class="howNum">11</div><h3>📊 Pontos estimados</h3>
+        <p>É a <b>média dos pontos finais</b> nas 200.000 simulações.</p>
+        <div class="howFormula">Pontos atuais + média dos pontos conquistados nas 7 corridas simuladas</div>
+      </article>
+
+      <article class="panel howCard">
+        <div class="howNum">12</div><h3>🏎️ Participações esperadas</h3>
+        <p>É a média de quantas das 7 corridas o piloto participou nas 200.000 simulações.</p>
+        <div class="howFormula">Para Berton: 7 × 80% = <strong>5,6 corridas</strong> em média</div>
+      </article>
+
+      <article class="panel howCard">
+        <div class="howNum">13</div><h3>🎯 P10, P25, Mediana, P75 e P90</h3>
+        <p>Esses valores mostram como os pontos finais ficaram distribuídos.</p>
+        <div class="howPercentileTable"><div><b>P10</b><span>10% ficaram aqui ou abaixo</span></div><div><b>P25</b><span>25% ficaram aqui ou abaixo</span></div><div><b>Mediana</b><span>metade abaixo e metade acima</span></div><div><b>P75</b><span>75% ficaram aqui ou abaixo</span></div><div><b>P90</b><span>90% ficaram aqui ou abaixo</span></div></div>
+      </article>
+
+      <article class="panel howCard">
+        <div class="howNum">14</div><h3>📈 Estabilidade da chance</h3>
+        <p>O gráfico mostra a <b>chance acumulada</b> conforme as simulações avançam. Se a linha se estabiliza cedo, a estimativa está convergindo.</p>
+      </article>
+
+      <article class="panel howCard">
+        <div class="howNum">15</div><h3>± O que significa a incerteza?</h3>
+        <p>Quando aparece algo como <b>±0,21 p.p.</b>, isso quer dizer que a estimativa da simulação pode oscilar cerca de <b>0,21 ponto percentual para cima ou para baixo</b> por causa do número finito de simulações.</p>
+        <div class="howFormula"><b>Exemplo:</b> 68,3% ± 0,21 p.p. ≈ <strong>68,09% a 68,51%</strong></div>
+        <p>O <b>95%</b> não significa “95% de incerteza”. É o nível usado para calcular essa margem. Em termos simples, usamos uma faixa que cobre aproximadamente 95% dos resultados esperados para a variação causada pela própria Monte Carlo.</p>
+        <div class="howFormula"><b>É bom ou ruim?</b> Para as 200.000 simulações, ±0,21 p.p. é uma margem pequena, então a estimativa está <strong>bem estável quanto ao número de simulações</strong>. Isso não significa que o modelo tenha 95% de certeza sobre o campeonato real.</div>
+        <p class="howSmall">Essa margem mede apenas a variação da simulação. Ela não mede a qualidade dos dados nem se as premissas do modelo estão corretas.</p>
+      </article>
+
+      <article class="panel howCard howWide">
+        <div class="howNum">16</div><h3>🔎 Como interpretar a porcentagem</h3>
+        <div class="howImportant"><b>68,3%</b><p>não significa que o piloto tenha exatamente 68,3% de chance na vida real.</p><p>Significa que, <b>dentro das regras e premissas do modelo</b>, ele terminou campeão em cerca de 68,3% dos 200.000 campeonatos simulados.</p></div>
+      </article>
+
+      <article class="panel howCard howWide">
+        <div class="howNum">17</div><h3>🎛️ Filtros e cenários</h3>
+        <p>Os filtros de piloto e corrida da <b>Classificação Geral</b> ajudam a visualizar o campeonato real. Já o cenário de pilotos usado na chance de título serve para testar hipóteses, como retirar alguns adversários da disputa simulada.</p>
+        <p class="howSmall">Assim você pode comparar cenários diferentes sem alterar os pontos reais já registrados.</p>
+      </article>
+    </div>
+  </div>
 </section>
 
 <section id="results" class="page">
@@ -1438,8 +1690,41 @@ body.modal-open{overflow:hidden}
       <div class="resultModalItem wide"><span>🎖️ Resultado</span><strong id="modalStatus">—</strong></div>
     </div>
     <div class="resultModalActions">
-      <button type="button" class="modalBtn primary" onclick="openModalPilot()">🏎️ Ver piloto</button>
+      <button type="button" class="modalBtn primary" onclick="openModalSimulation()">🔬 Ver simulação</button>
       <button type="button" class="modalBtn" onclick="applyModalRace()">🏁 Selecionar corrida</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== TITLE PROBABILITY DETAIL MODAL ===== -->
+<div id="probDetailModal" class="probDetailModal" aria-hidden="true">
+  <div class="probDetailBackdrop" onclick="closeProbDetail()"></div>
+  <div class="probDetailCard" role="dialog" aria-modal="true" aria-labelledby="probDetailTitle">
+    <button class="probDetailClose" type="button" onclick="closeProbDetail()" aria-label="Fechar">×</button>
+    <div class="probDetailKicker">🏆 COMO A CHANCE FOI CALCULADA</div>
+    <h2 id="probDetailTitle">Piloto</h2>
+    <div id="probDetailAccent" class="probDetailAccent"></div>
+    <div class="probDetailGrid">
+      <div class="probDetailItem"><span>🏆 Chance de título</span><strong id="pdProb">—</strong><small id="pdUncertainty">—</small></div>
+      <div class="probDetailItem"><span>📊 Pontos atuais</span><strong id="pdCurrent">—</strong></div>
+      <div class="probDetailItem"><span>🔮 Pontos estimados no final</span><strong id="pdProjected">—</strong></div>
+      <div class="probDetailItem"><span>➕ Pontos estimados restantes</span><strong id="pdFuture">—</strong></div>
+      <div class="probDetailItem"><span>🏁 Corridas restantes</span><strong id="pdRemaining">—</strong></div>
+      <div class="probDetailItem"><span>🏎️ Participação por corrida</span><strong id="pdParticipation">—</strong></div>
+      <div class="probDetailItem"><span>🛞 Participações esperadas</span><strong id="pdExpectedRaces">—</strong><small id="pdExpectedRacesNote">—</small></div>
+      <div class="probDetailItem"><span>📈 Desempenho médio usado</span><strong id="pdMeanRel">—</strong><small>0% = último; 100% = 1º no histórico</small></div>
+      <div class="probDetailItem"><span>↕️ Variação do desempenho</span><strong id="pdSdRel">—</strong></div>
+      <div class="probDetailItem"><span>🕒 Peso das corridas</span><strong id="pdRecency">—</strong><small>corridas recentes têm um pouco mais de peso</small></div>
+      <div class="probDetailItem"><span>🎯 Posição final estimada</span><strong id="pdFinalPos">—</strong><small>média nas simulações</small></div>
+      <div class="probDetailItem"><span>🥇 Chance de Top 3</span><strong id="pdTop3">—</strong></div>
+      <div class="probDetailItem"><span>🧩 Prior estatístico</span><strong id="pdPrior">—</strong><small>equivale a observações extras da média do campo</small></div>
+      <div class="probDetailItem"><span>🧮 Simulações</span><strong id="pdSims">—</strong></div>
+      <div class="probDetailItem wide"><span>💡 O que isso significa?</span><strong id="pdSimpleText">—</strong></div>
+    </div>
+    <div class="probDetailExplanation" id="pdExplanation">—</div>
+    <div class="probDetailActions">
+      <button type="button" class="probDetailBtn" onclick="closeProbDetail()">Fechar</button>
     </div>
   </div>
 </div>
@@ -1462,13 +1747,13 @@ const pilotColors={
   "LUCAS":"#ef1721",
   "BERTON":"#f2c94e",
   "HENRIQUE":"#4e8cff",
-  "ROSE":"#9d4edd",
+  "ROSE":"#ff69b4",
   "REX":"#21c76a",
   "GUIMA":"#22c1d6",
   "ROBINHO":"#f39c33",
   "NICOLAS":"#8a61d8",
   "GUILHERME":"#f2f2f2",
-  "RIAN":"#ff4f9a",
+  "RIAN":"#9d4edd",
   "CAUA":"#8d969d",
   "HIRO":"#ff7a18"
 };
@@ -1534,7 +1819,7 @@ function readableTop5Chart(series,labels,colors,maxY){
 }
 function syncRacePills(){document.querySelectorAll("#racesBox .racePill").forEach(el=>{const cb=el.querySelector("input");el.classList.toggle("on",cb.checked);});}
 function selected(id){return[...document.querySelectorAll(`#${id} input:checked`)].map(x=>x.value)}
-function showPage(id){document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");document.getElementById("nChamp").classList.toggle("active",id==="champ");document.getElementById("nPilot").classList.toggle("active",id==="pilot");document.getElementById("nResults").classList.toggle("active",id==="results");if(id==="results")updateResults()}
+function showPage(id){document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");document.getElementById("nChamp").classList.toggle("active",id==="champ");document.getElementById("nPilot").classList.toggle("active",id==="pilot");document.getElementById("nSim").classList.toggle("active",id==="sim");document.getElementById("nResults").classList.toggle("active",id==="results");document.getElementById("nHow").classList.toggle("active",id==="how");if(id==="results")updateResults();if(id==="sim")renderSimulationPage()}
 function allRaces(){document.querySelectorAll("#racesBox input").forEach(x=>x.checked=true);syncRacePills();updateChamp()}
 function noneRaces(){document.querySelectorAll("#racesBox input").forEach(x=>x.checked=false);syncRacePills();updateChamp()}
 function allPilots(){document.querySelectorAll("#pilotsBox input").forEach(x=>x.checked=true);updateChamp()}
@@ -1551,65 +1836,373 @@ function lineChart(series,labels,colors,maxY,withValues=false){
 }
 
 
-function updateTitleProbability(){
-  const TOTAL_RACES=10;
-  const completed=RACES.length;
-  const remaining=Math.max(0,TOTAL_RACES-completed);
+window.MODEL_POSITION_PRIOR = window.MODEL_POSITION_PRIOR ?? 3;
 
-  const all=standings(DATA);
-  if(!all.length){
+function changePositionPrior(value){
+  const n=Number(value);
+  window.MODEL_POSITION_PRIOR = Number.isFinite(n) && n>=1 && n<=3 ? n : 3;
+  document.querySelectorAll('#positionPriorButtons .priorBtn').forEach(btn=>{
+    btn.classList.toggle('active', Number(btn.dataset.prior)===window.MODEL_POSITION_PRIOR);
+  });
+  updateTitleProbability();
+}
+
+function updateTitleProbability(){
+  const TOTAL_RACES = 10;
+  const completed = RACES.length;
+  const remaining = Math.max(0, TOTAL_RACES - completed);
+
+  // O filtro continua definindo o cenário da simulação.
+  const selectedPilots = selected("pilotsBox");
+  const pilots = selectedPilots.length ? selectedPilots : [...new Set(DATA.map(x=>x.piloto))];
+
+  const posMapLocal = {
+    "Primeiro":1,"Segundo":2,"Terceiro":3,"Quarto":4,"Quinta":5,"Quinto":5,
+    "Sexto":6,"Sétimo":7,"Setimo":7,"Oitavo":8,"Nono":9,
+    "Décimo":10,"Decimo":10,"Décimo Primeiro":11,"Decimo Primeiro":11
+  };
+  const scoreFromPosition = p => p===1 ? 10 : p===2 ? 7 : p===3 ? 5 : p===4 ? 3 : p===5 ? 2 : p===6 ? 1 : 0;
+
+  const rows = DATA.filter(x=>pilots.includes(x.piloto));
+  if(!rows.length){
     document.getElementById("probWinnerName").textContent="—";
     document.getElementById("probWinnerPct").textContent="—";
     document.getElementById("probMeta").textContent="Sem dados suficientes.";
     document.getElementById("probList").innerHTML=`<div class="empty">Sem dados</div>`;
+    window.TITLE_PROBS={};
+    window.TITLE_DETAILS={};
     return;
   }
 
-  // Projection: current points + expected points over the remaining races.
-  // A light shrinkage toward the championship average avoids over-weighting pilots
-  // who have only one recorded start.
-  const observed=DATA.map(x=>Number(x.pontos));
-  const fieldMean=observed.length ? observed.reduce((a,b)=>a+b,0)/observed.length : 0;
-  const PRIOR=2;
+  // Interrompe o worker anterior. O cenário novo não espera o cálculo antigo terminar.
+  window.__probRunToken=(window.__probRunToken||0)+1;
+  const runToken=window.__probRunToken;
+  if(window.__probWorker){ try{ window.__probWorker.terminate(); }catch(e){} window.__probWorker=null; }
 
-  const projections=all.map(([pilot,current])=>{
-    const history=DATA.filter(x=>x.piloto===pilot).map(x=>Number(x.pontos));
-    const n=history.length;
-    const avg=n ? (history.reduce((a,b)=>a+b,0)+PRIOR*fieldMean)/(n+PRIOR) : fieldMean;
-    return {pilot,current:Number(current),avg,projected:Number(current)+avg*remaining};
+  // Cache: repetir um cenário já calculado fica praticamente instantâneo.
+  const POSITION_PRIOR=Number.isFinite(window.MODEL_POSITION_PRIOR)?Number(window.MODEL_POSITION_PRIOR):3;
+  const scenarioKey=pilots.slice().sort().join("¦")+"¦PRIOR="+POSITION_PRIOR;
+  window.__probCache=window.__probCache||new Map();
+  const cached=window.__probCache.get(scenarioKey);
+  if(cached){
+    renderTitleProbability(cached, remaining, cached.SIMS||200000, pilots.length, runToken);
+    return;
+  }
+
+  const mean = a => a.length ? a.reduce((s,x)=>s+x,0)/a.length : 0;
+  const sd = a => {
+    if(a.length<2) return 0;
+    const m=mean(a);
+    return Math.sqrt(a.reduce((s,x)=>s+(x-m)**2,0)/(a.length-1));
+  };
+
+  // Grid real de cada corrida, usado para normalizar a posição.
+  const fieldSizeByRace={};
+  RACES.forEach(r=>{
+    fieldSizeByRace[r]=new Set(DATA.filter(x=>x.raceKey===r).map(x=>x.piloto)).size;
+  });
+  // Peso moderado para recência: 1ª corrida = 1,0; 2ª = 1,1; 3ª = 1,2; e assim por diante.
+  const RECENCY_WEIGHTS=Object.fromEntries(RACES.map((r,i)=>[r,1+(i*0.1)]));
+  const relativePerformance=(position,fieldSize)=>{
+    if(!Number.isFinite(position)||position<=0)return null;
+    if(fieldSize<=1)return 1;
+    return Math.max(0,Math.min(1,1-((position-1)/(fieldSize-1))));
+  };
+  const weightedMean=(values,weights)=>{
+    let sw=0, sx=0;
+    values.forEach((v,i)=>{const w=weights[i]||0; if(Number.isFinite(v)&&w>0){sw+=w;sx+=w*v;}});
+    return sw?sx/sw:0;
+  };
+  const weightedSD=(values,weights)=>{
+    const m=weightedMean(values,weights);
+    let sw=0, s2=0;
+    values.forEach((v,i)=>{const w=weights[i]||0; if(Number.isFinite(v)&&w>0){sw+=w;s2+=w*(v-m)**2;}});
+    return sw?Math.sqrt(s2/sw):0;
+  };
+
+  const allPairs=DATA.map(x=>{
+    const pos=posMapLocal[x.posicao]??Number(x.posicao);
+    const value=relativePerformance(pos,fieldSizeByRace[x.raceKey]||1);
+    return {value,weight:RECENCY_WEIGHTS[x.raceKey]||1};
+  }).filter(x=>Number.isFinite(x.value));
+  const fieldMeanRel=weightedMean(allPairs.map(x=>x.value),allPairs.map(x=>x.weight));
+  const fieldSDRel=weightedSD(allPairs.map(x=>x.value),allPairs.map(x=>x.weight))||0.20;
+  const stats={};
+  pilots.forEach(p=>{
+    const histRows=DATA.filter(x=>x.piloto===p);
+    const perfHist=histRows.map(x=>{
+      const pos=posMapLocal[x.posicao]??Number(x.posicao);
+      return {value:relativePerformance(pos,fieldSizeByRace[x.raceKey]||1),weight:RECENCY_WEIGHTS[x.raceKey]||1,race:x.raceKey};
+    }).filter(x=>Number.isFinite(x.value));
+    const n=perfHist.length;
+    const values=perfHist.map(x=>x.value), weights=perfHist.map(x=>x.weight);
+    const observationWeight=weights.reduce((a,b)=>a+b,0);
+    const rawMean=observationWeight?weightedMean(values,weights):fieldMeanRel;
+    const rawSD=n>=2?weightedSD(values,weights):fieldSDRel;
+    const current=histRows.reduce((sum,x)=>sum+Number(x.pontos||0),0);
+    const historicalRaces=new Set(histRows.map(x=>x.raceKey)).size;
+    // Participação direta: 3/3 = 100%, 2/3 = 66,7%, 1/3 = 33,3%. Berton = 80%.
+    const participation=(p.toUpperCase()==="BERTON") ? 0.8 : (completed ? historicalRaces/completed : 0);
+    stats[p]={
+      current,
+      meanRel:(observationWeight*rawMean+POSITION_PRIOR*fieldMeanRel)/(observationWeight+POSITION_PRIOR),
+      sdRel:(observationWeight*rawSD+POSITION_PRIOR*fieldSDRel)/(observationWeight+POSITION_PRIOR),
+      participation,
+      historicalRaces,
+      observationWeight,
+      rawMean,
+      rawSD,
+      recencyWeights:perfHist.map(x=>({race:x.race,weight:x.weight}))
+    };
   });
 
-  // Convert projected totals into a transparent "estimated title chance".
-  // The temperature keeps the result from becoming artificially certain with only 3 races observed.
-  const maxProjected=Math.max(...projections.map(x=>x.projected));
-  const TEMP=16;
-  const weights=projections.map(x=>Math.exp((x.projected-maxProjected)/TEMP));
-  const z=weights.reduce((a,b)=>a+b,0)||1;
-  projections.forEach((x,i)=>x.prob=weights[i]/z*100);
-  projections.sort((a,b)=>b.prob-a.prob||b.projected-a.projected);
-  window.TITLE_PROBS=Object.fromEntries(projections.map(x=>[x.pilot,x.prob]));
+  // 200 mil simulações: maior estabilidade da estimativa, executadas em Web Worker.
+  const SIMS=200000;
+  const n=pilots.length;
+  const payload={
+    pilots,
+    remaining,
+    SIMS,
+    currentPts:pilots.map(p=>stats[p].current),
+    meanRel:pilots.map(p=>stats[p].meanRel),
+    sdRel:pilots.map(p=>stats[p].sdRel),
+    participation:pilots.map(p=>stats[p].participation),
+    historicalRaces:pilots.map(p=>stats[p].historicalRaces),
+    fieldMeanRel,
+    fieldSDRel,
+    positionPrior:POSITION_PRIOR,
+    observationWeight:pilots.map(p=>stats[p].observationWeight),
+    rawMean:pilots.map(p=>stats[p].rawMean),
+    rawSD:pilots.map(p=>stats[p].rawSD),
+    recencyWeights:RACES.map(r=>({race:r,weight:RECENCY_WEIGHTS[r]})),
+    seed:(()=>{
+      let seed=(20260920>>>0);
+      seed=(seed+Math.round(POSITION_PRIOR*1000))>>>0;
+      pilots.slice().sort().forEach(p=>{for(let i=0;i<p.length;i++)seed=(seed+p.charCodeAt(i)*(i+3))>>>0;});
+      return seed>>>0;
+    })()
+  };
 
+  const workerCode=`
+    self.onmessage=function(ev){
+      const d=ev.data, pilots=d.pilots, n=pilots.length, remaining=d.remaining, SIMS=d.SIMS;
+      const currentPts=Float64Array.from(d.currentPts), meanRel=Float64Array.from(d.meanRel), sdRel=Float64Array.from(d.sdRel), participation=Float64Array.from(d.participation);
+      const futureTotals=new Float64Array(n), participationCounts=new Float64Array(n), participationTotal=new Float64Array(n), finalPositionTotals=new Float64Array(n), top3Counts=new Float64Array(n), wins=new Float64Array(n), finalPts=new Float64Array(n), latent=new Float64Array(n);
+      const maxFuture=remaining*10;
+      // participationCounts = participações na simulação atual; participationTotal = acumulado das 200 mil simulações.
+
+      const pointHist=Array.from({length:n},()=>new Uint32Array(maxFuture+1));
+      const posHist=Array.from({length:n},()=>new Uint32Array(n+1));
+      const participationHist=Array.from({length:n},()=>new Uint32Array(remaining+1));
+      const blockSize=1000, blockCount=Math.ceil(SIMS/blockSize);
+      const blockWins=Array.from({length:blockCount},()=>new Float64Array(n));
+      let seed=d.seed>>>0;
+      const rand=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296;};
+      const randn=()=>{let u=0,v=0;while(u===0)u=rand();while(v===0)v=rand();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);};
+      const scoreFromPosition=p=>p===1?10:p===2?7:p===3?5:p===4?3:p===5?2:p===6?1:0;
+      const order=new Array(n), raceOrder=[];
+      for(let sim=0;sim<SIMS;sim++){
+        for(let i=0;i<n;i++){finalPts[i]=currentPts[i]; participationCounts[i]=0;}
+        for(let r=0;r<remaining;r++){
+          raceOrder.length=0;
+          for(let i=0;i<n;i++){
+            if(rand()<participation[i]){
+              latent[i]=Math.max(0,Math.min(1,meanRel[i]+sdRel[i]*randn()));
+              raceOrder.push(i);
+              participationCounts[i]++; participationTotal[i]++;
+            }
+          }
+          raceOrder.sort((a,b)=>latent[b]-latent[a]||a-b);
+          for(let pos=0;pos<raceOrder.length;pos++){
+            const idx=raceOrder[pos], pts=scoreFromPosition(pos+1);
+            finalPts[idx]+=pts;
+            futureTotals[idx]+=pts;
+          }
+        }
+        for(let i=0;i<n;i++)order[i]=i;
+        order.sort((a,b)=>finalPts[b]-finalPts[a]||a-b);
+        const simBlock=Math.floor(sim/blockSize);
+        for(let i=0;i<n;i++){
+          const fp=Math.max(0,Math.min(maxFuture,finalPts[i]-currentPts[i]));
+          pointHist[i][fp]++;
+          participationHist[i][participationCounts[i]]++;
+        }
+        for(let k=0;k<n;k++){const idx=order[k]; posHist[idx][k+1]++;}
+        const best=finalPts[order[0]];
+        let tieCount=1; while(tieCount<n&&finalPts[order[tieCount]]===best)tieCount++;
+        const winShare=1/tieCount;
+        for(let k=0;k<tieCount;k++){wins[order[k]]+=winShare; blockWins[simBlock][order[k]]+=winShare;}
+        const topN=Math.min(3,n); for(let k=0;k<topN;k++)top3Counts[order[k]]++;
+        let i=0; while(i<n){ let j=i+1; while(j<n&&finalPts[order[j]]===finalPts[order[i]])j++; const avgRank=((i+1)+j)/2; for(let k=i;k<j;k++)finalPositionTotals[order[k]]+=avgRank; i=j; }
+      }
+      const projections=pilots.map((p,i)=>{
+        const pHat=wins[i]/SIMS;
+        const z=1.96;
+        const den=1+(z*z)/SIMS;
+        const center=(pHat+(z*z)/(2*SIMS))/den;
+        const half=z*Math.sqrt((pHat*(1-pHat))/SIMS+(z*z)/(4*SIMS*SIMS))/den;
+        return {
+          pilot:p,index:i,current:currentPts[i],projected:(currentPts[i]*SIMS+futureTotals[i])/SIMS,
+          futurePoints:futureTotals[i]/SIMS,prob:pHat*100,
+          mcLow:Math.max(0,(center-half)*100),mcHigh:Math.min(100,(center+half)*100),
+          mcUncertainty:half*100,
+          expectedParticipation:participationTotal[i]/SIMS,expectedFinalPosition:finalPositionTotals[i]/SIMS,
+          top3Prob:top3Counts[i]/SIMS*100,meanRel:meanRel[i],sdRel:sdRel[i],participation:participation[i],historicalRaces:d.historicalRaces[i],positionPrior:d.positionPrior,
+          observationWeight:d.observationWeight[i],rawMean:d.rawMean[i],rawSD:d.rawSD[i],recencyWeights:d.recencyWeights
+        };
+      }).sort((a,b)=>b.prob-a.prob||b.projected-a.projected);
+      self.postMessage({projections,SIMS,maxFuture,positionPrior:d.positionPrior,pointHist:pointHist.map(a=>Array.from(a)),posHist:posHist.map(a=>Array.from(a)),participationHist:participationHist.map(a=>Array.from(a)),blockWins:blockWins.map(a=>Array.from(a)),blockSize});
+    };
+  `;
+  const blob=new Blob([workerCode],{type:"application/javascript"});
+  const worker=new Worker(URL.createObjectURL(blob));
+  window.__probWorker=worker;
+  worker.onmessage=function(ev){
+    if(window.__probRunToken!==runToken){worker.terminate();return;}
+    const result=ev.data;
+    result.projections.forEach(x=>{ x._scenarioField=n; x._fieldMeanRel=fieldMeanRel; x._fieldSDRel=fieldSDRel; });
+    result.remaining=remaining;
+    result.positionPrior=POSITION_PRIOR;
+    // Guarda até 30 cenários para reuso rápido.
+    window.__probCache.set(scenarioKey,result);
+    if(window.__probCache.size>30)window.__probCache.delete(window.__probCache.keys().next().value);
+    worker.terminate();
+    if(window.__probWorker===worker)window.__probWorker=null;
+    renderTitleProbability(result,remaining,result.SIMS,n,runToken);
+  };
+  worker.onerror=function(){
+    if(window.__probRunToken!==runToken)return;
+    worker.terminate();
+    if(window.__probWorker===worker)window.__probWorker=null;
+    // Fallback silencioso: tenta uma simulação menor no próximo clique sem congelar a interface.
+    document.getElementById("probMeta").textContent="Não foi possível atualizar a simulação.";
+  };
+  worker.postMessage(payload);
+}
+
+function renderTitleProbability(result,remaining,SIMS,n,runToken){
+  if(window.__probRunToken!==runToken)return;
+  const projections=result.projections||[];
+  if(!projections.length)return;
+  window.TITLE_PROBS=Object.fromEntries(projections.map(x=>[x.pilot,x.prob]));
+  window.__probLastResult=result;
+  window.__probLastScenario={pilots:Object.keys(window.TITLE_PROBS),remaining,SIMS,n};
+  const fieldMeanRel=projections[0]._fieldMeanRel||0;
+  const fieldSDRel=projections[0]._fieldSDRel||0;
+  const positionPrior=Number.isFinite(result.positionPrior)?result.positionPrior:(Number.isFinite(projections[0].positionPrior)?projections[0].positionPrior:2);
+  window.TITLE_DETAILS=Object.fromEntries(projections.map(x=>[
+    x.pilot,{...x,remaining,SIMS,scenarioField:n,fieldMeanRel,fieldSDRel,positionPrior}
+  ]));
   const winner=projections[0];
   document.getElementById("probWinnerName").textContent=winner.pilot;
-  document.getElementById("probWinnerPct").textContent=winner.prob.toFixed(0)+"%";
-  document.getElementById("probMeta").textContent=
-    `${remaining} ${remaining===1?"corrida restante":"corridas restantes"} • projeção: ${winner.projected.toFixed(1)} pts • baseada no histórico atual`;
-
+  document.getElementById("probWinnerPct").textContent=winner.prob.toFixed(1)+"%";
+  document.getElementById("probMeta").innerHTML=
+    `${remaining} ${remaining===1?"corrida restante":"corridas restantes"} • projeção: ${winner.projected.toFixed(1)} pts • ${n} piloto(s) no cenário • ${SIMS.toLocaleString("pt-BR")} simulações<br><b>Margem da simulação (95%): ±${winner.mcUncertainty.toFixed(2)} p.p.</b> • prior = ${positionPrior}`;
   const top=Math.min(6,projections.length);
-  const maxProb=Math.max(1,projections[0].prob);
+  const maxProb=Math.max(1,...projections.map(x=>x.prob));
   document.getElementById("probList").innerHTML=
     `<div class="probListHead"><span>#</span><span>PILOTO</span><span>CHANCE ESTIMADA</span><span>%</span></div>`+
     projections.slice(0,top).map((x,i)=>
-      `<div class="probRow" data-pilot-nav="${esc(x.pilot)}" tabindex="0" aria-label="Abrir página do piloto ${esc(x.pilot)}">
+      `<div class="probRow" data-prob-pilot="${esc(x.pilot)}" data-pilot-nav="${esc(x.pilot)}" tabindex="0" aria-label="Ver cálculo da chance de título de ${esc(x.pilot)}">
         <div class="probPos">${i+1}</div>
         <div class="probName">${esc(x.pilot)}</div>
-        <div class="probTrack"><i style="width:${Math.min(100,x.prob/maxProb*100)}%;background:${pilotColor(x.pilot)}"></i></div>
-        <div class="probPct">${x.prob.toFixed(0)}%</div>
+        <div class="probTrack"><i style="width:${Math.max(2,x.prob/maxProb*100)}%;background:${pilotColor(x.pilot)}"></i></div>
+        <div class="probPct">${x.prob.toFixed(1)}%</div>
       </div>`
-    ).join("")+
-    `<div class="probNote">Estimativa de referência, não uma previsão oficial: usa os pontos atuais e a média histórica por corrida para projetar as 10 etapas.</div>`;
+    ).join("")+ 
+    `<div class="probNote">O filtro de pilotos define o cenário. A participação futura usa a taxa histórica direta (ex.: 3/3 = 100%), com Berton fixado em 80%. O desempenho é normalizado pelo tamanho do grid. O prior = ${positionPrior} reduz o peso exagerado de históricos muito curtos. A incerteza mostrada é somente da Monte Carlo, não da qualidade dos dados ou das premissas.</div>`;
+  if(document.getElementById("sim")?.classList.contains("active")) renderSimulationPage();
 }
-
+function simHistogramSvg(counts, labels, opts={}){
+  const W=900,H=300,L=52,R=18,T=20,B=48;
+  const max=Math.max(1,...counts), n=counts.length;
+  const barGap=n>40?1:4, barW=Math.max(2,(W-L-R-(n-1)*barGap)/n);
+  const color=opts.color||'#f3cf4e';
+  let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" height="100%" preserveAspectRatio="none">`;
+  for(let i=0;i<=4;i++){const y=T+(H-T-B)*i/4,val=max*(1-i/4);s+=`<line x1="${L}" y1="${y}" x2="${W-R}" y2="${y}" stroke="#30373d"/><text x="5" y="${y+4}" fill="#8f999f" font-size="10">${Math.round(val).toLocaleString('pt-BR')}</text>`}
+  counts.forEach((v,i)=>{
+    const h=(H-T-B)*(v/max), x=L+i*(barW+barGap), y=T+(H-T-B)-h;
+    s+=`<rect x="${x.toFixed(2)}" y="${y.toFixed(2)}" width="${Math.max(1,barW).toFixed(2)}" height="${Math.max(0,h).toFixed(2)}" rx="2" fill="${color}" opacity=".92"><title>${esc(labels[i]||'')} : ${v.toLocaleString('pt-BR')} simulações</title></rect>`;
+  });
+  const step=Math.max(1,Math.ceil(n/10));
+  labels.forEach((lab,i)=>{if(i%step!==0&&i!==n-1)return;const x=L+i*(barW+barGap)+barW/2;s+=`<text x="${x}" y="${H-15}" text-anchor="middle" fill="#c6cdd2" font-size="10">${esc(lab)}</text>`});
+  return s+'</svg>';
+}
+function simLineSvg(values, labels, opts={}){
+  const W=900,H=220,L=52,R=20,T=18,B=38;
+  const pct=opts.percent===true;
+  const max=pct?1:Math.max(0.0001,...values);
+  const min=pct?0:0;
+  let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" height="100%" preserveAspectRatio="none">`;
+  for(let i=0;i<=4;i++){
+    const frac=i/4, y=T+(H-T-B)*frac, val=max*(1-frac);
+    s+=`<line x1="${L}" y1="${y}" x2="${W-R}" y2="${y}" stroke="#30373d"/>`;
+    s+=`<text x="5" y="${y+4}" fill="#8f999f" font-size="10">${pct?(val*100).toFixed(0)+'%':(val*100).toFixed(1)+'%'}</text>`;
+  }
+  const pts=values.map((v,i)=>{
+    const x=L+i*(W-L-R)/Math.max(1,values.length-1);
+    const y=T+(H-T-B)*(1-(v-min)/(max-min||1));
+    return `${x},${y}`;
+  }).join(' ');
+  s+=`<polyline points="${pts}" fill="none" stroke="var(--red)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>`;
+  values.forEach((v,i)=>{
+    const x=L+i*(W-L-R)/Math.max(1,values.length-1);
+    const y=T+(H-T-B)*(1-(v-min)/(max-min||1));
+    s+=`<circle cx="${x}" cy="${y}" r="2.5" fill="var(--red)"/>`;
+  });
+  const step=Math.max(1,Math.ceil(labels.length/8));
+  labels.forEach((lab,i)=>{if(i%step!==0&&i!==labels.length-1)return;const x=L+i*(W-L-R)/Math.max(1,labels.length-1);s+=`<text x="${x}" y="${H-12}" text-anchor="middle" fill="#c6cdd2" font-size="10">${esc(lab)}</text>`});
+  if(Number.isFinite(opts.finalValue)){
+    const y=T+(H-T-B)*(1-opts.finalValue);
+    s+=`<line x1="${L}" y1="${y}" x2="${W-R}" y2="${y}" stroke="#f2c94e" stroke-width="1.5" stroke-dasharray="6 5" opacity=".9"/>`;
+    s+=`<text x="${W-R}" y="${y-6}" text-anchor="end" fill="#f2c94e" font-size="10" font-weight="900">Final ${((opts.finalValue)*100).toFixed(1)}%</text>`;
+  }
+  return s+'</svg>';
+}
+function quantileFromHist(hist,q){
+  const total=hist.reduce((a,b)=>a+b,0); if(!total)return 0;
+  const target=Math.max(1,Math.ceil(total*q)); let c=0;
+  for(let i=0;i<hist.length;i++){c+=hist[i]; if(c>=target)return i;} return hist.length-1;
+}
+function populateSimPilotSelect(pilots){
+  const sel=document.getElementById('simPilotSelect'); if(!sel)return;
+  const current=sel.value;
+  sel.innerHTML=pilots.map(p=>`<option value="${esc(p)}">${esc(p)}</option>`).join('');
+  if(pilots.includes(current))sel.value=current;
+  else if(pilots.length)sel.value=pilots[0];
+}
+function renderSimulationPage(){
+  const r=window.__probLastResult;
+  const scenario=window.__probLastScenario;
+  if(!r||!r.projections||!r.projections.length)return;
+  const pilots=r.projections.map(x=>x.pilot), sel=document.getElementById('simPilotSelect');
+  populateSimPilotSelect(pilots);
+  const pilot=sel?.value||pilots[0];
+  const proj=r.projections.find(x=>x.pilot===pilot); if(!proj)return;
+  const idx=Number.isInteger(proj.index)?proj.index:pilots.indexOf(pilot);
+  if(idx<0)return;
+  const current=proj.current, futureHist=(r.pointHist?.[idx]||[]), posHist=r.posHist?.[idx]||[], partHist=r.participationHist?.[idx]||[];
+  document.getElementById('simScenario').innerHTML=`<b>${pilots.length} piloto(s)</b> selecionado(s)<br>${pilots.map(esc).join(' • ')}<br><br><b>${r.SIMS.toLocaleString('pt-BR')}</b> simulações para as <b>${scenario?.remaining ?? 7}</b> corridas restantes.<br><br><b>Prior:</b> ${r.positionPrior ?? 2} • <b>Margem Monte Carlo (95%):</b> ±${proj.mcUncertainty.toFixed(2)} p.p.`;
+  document.querySelectorAll('#positionPriorButtons .priorBtn').forEach(btn=>btn.classList.toggle('active',Number(btn.dataset.prior)===(r.positionPrior ?? 3)));
+  document.getElementById('simKpiProb').textContent=proj.prob.toFixed(1)+'% ± '+proj.mcUncertainty.toFixed(2)+' p.p.';
+  document.getElementById('simKpiProjected').textContent=proj.projected.toFixed(1)+' pts';
+  document.getElementById('simKpiPosition').textContent=proj.expectedFinalPosition.toFixed(2)+'º';
+  document.getElementById('simKpiParticipation').textContent=proj.expectedParticipation.toFixed(2);
+  const finalLabels=futureHist.map((_,i)=>String(current+i));
+  document.getElementById('simPointsChart').innerHTML=simHistogramSvg(futureHist,finalLabels,{color:'var(--gold)'});
+  const posLabels=posHist.slice(1).map((_,i)=>String(i+1)+'º');
+  document.getElementById('simPositionChart').innerHTML=simHistogramSvg(posHist.slice(1),posLabels,{color:'var(--blue)'});
+  const partLabels=partHist.map((_,i)=>String(i));
+  document.getElementById('simParticipationChart').innerHTML=simHistogramSvg(partHist,partLabels,{color:'var(--green)'});
+  const blockWins=(r.blockWins||[]).map(b=>(b[idx]||0));
+  let cumulativeWins=0;
+  const blocks=blockWins.map((v,i)=>{cumulativeWins+=v; return cumulativeWins/((i+1)*r.blockSize);});
+  const blockLabels=blocks.map((_,i)=>`${((i+1)*r.blockSize/1000).toFixed(0)}k`);
+  document.getElementById('simStabilityChart').innerHTML=simLineSvg(blocks,blockLabels,{percent:true,finalValue:proj.prob/100});
+  const qs=[.1,.25,.5,.75,.9], qLabels=['P10','P25','Mediana','P75','P90'];
+  document.getElementById('simPercentiles').innerHTML=qs.map((q,i)=>`<div class="simPercentile"><span>${qLabels[i]}</span><strong>${(current+quantileFromHist(futureHist,q)).toFixed(1)} pts</strong></div>`).join('');
+  document.getElementById('simExplanation').innerHTML=`Neste cenário, <b>${esc(pilot)}</b> termina campeão em <b>${proj.prob.toFixed(1)}%</b> das 200.000 simulações. A estimativa de Monte Carlo tem uma incerteza de aproximadamente <b>±${proj.mcUncertainty.toFixed(2)} pontos percentuais</b> em um intervalo de 95%; isso mede apenas a oscilação natural de usar um número finito de simulações, e não a incerteza das premissas do modelo. O prior = <b>${r.positionPrior ?? 2}</b> faz uma pequena correção para históricos curtos. As corridas mais recentes têm peso um pouco maior (1,0; 1,1; 1,2; ...), mas <b>não existe um fator separado de tendência</b>. O gráfico de pontos usa todas as simulações e mostra quantas vezes cada total de pontos apareceu. O gráfico de posição mostra em quais posições o piloto terminou. O gráfico de participação mostra quantas das 7 corridas ele disputou em cada simulação. A média prevista é de <b>${proj.projected.toFixed(1)} pontos</b> e de <b>${proj.expectedParticipation.toFixed(2)} participações</b> nas corridas restantes.`;
+}
 function updateChamp(){
   updateTitleProbability();
   const rs=selected("racesBox"), ps=selected("pilotsBox");
@@ -1898,13 +2491,14 @@ function closeResultModal(){
   document.querySelectorAll(".is-selected").forEach(el=>el.classList.remove("is-selected"));
 }
 
-function openModalPilot(){
+function openModalSimulation(){
   if(!modalSelection)return;
-  const sel=document.getElementById("pilotSelect");
-  sel.value=modalSelection.piloto;
-  showPage("pilot");
-  updatePilot();
+  const sel=document.getElementById("simPilotSelect");
+  if(sel) sel.value=modalSelection.piloto;
   closeResultModal();
+  showPage("sim");
+  renderSimulationPage();
+  window.scrollTo({top:0,behavior:"smooth"});
 }
 
 function applyModalRace(){
@@ -1918,7 +2512,57 @@ function applyModalRace(){
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
+function openProbDetail(pilot){
+  const d=window.TITLE_DETAILS?.[pilot];
+  if(!d)return;
+  const pct=d.prob.toFixed(1)+"%";
+  const participationPct=(d.participation*100).toFixed(0)+"%";
+  const uncertainty=`±${d.mcUncertainty.toFixed(2)} p.p. (margem de Monte Carlo, 95%)`;
+  const expected=d.expectedParticipation.toFixed(1);
+  const future=Math.max(0,d.futurePoints);
+  document.getElementById("probDetailTitle").textContent=d.pilot;
+  document.getElementById("probDetailAccent").style.background=pilotColor(d.pilot);
+  document.getElementById("probDetailAccent").style.boxShadow=`0 0 18px ${pilotColor(d.pilot)}55`;
+  document.getElementById("pdProb").textContent=pct;
+  document.getElementById("pdUncertainty").textContent=uncertainty;
+  document.getElementById("pdCurrent").textContent=d.current.toFixed(1)+" pts";
+  document.getElementById("pdProjected").textContent=d.projected.toFixed(1)+" pts";
+  document.getElementById("pdFuture").textContent=future.toFixed(1)+" pts";
+  document.getElementById("pdRemaining").textContent=d.remaining;
+  document.getElementById("pdParticipation").textContent=participationPct;
+  document.getElementById("pdExpectedRaces").textContent=expected+" corridas";
+  document.getElementById("pdExpectedRacesNote").textContent=`de ${d.remaining} possíveis`;
+  document.getElementById("pdMeanRel").textContent=(d.meanRel*100).toFixed(1)+"%";
+  document.getElementById("pdSdRel").textContent=(d.sdRel*100).toFixed(1)+" pontos percentuais";
+  const rw=(d.recencyWeights||[]).map(x=>`${x.race}: ${x.weight.toFixed(1)}`).join(" • ");
+  document.getElementById("pdRecency").textContent=rw||"—";
+  document.getElementById("pdFinalPos").textContent=d.expectedFinalPosition.toFixed(2)+"º";
+  document.getElementById("pdTop3").textContent=d.top3Prob.toFixed(1)+"%";
+  document.getElementById("pdPrior").textContent=String(d.positionPrior ?? 2);
+  document.getElementById("pdSims").textContent=d.SIMS.toLocaleString("pt-BR");
+  document.getElementById("pdSimpleText").textContent=`O modelo usa ${participationPct} de chance de participação por corrida, espera ${expected} participações nas ${d.remaining} corridas e projeta ${d.projected.toFixed(1)} pontos no total. A estimativa é ${pct}, com incerteza de aproximadamente ${uncertainty}.`;
+  const rwText=(d.recencyWeights||[]).map(x=>`${x.race} = ${x.weight.toFixed(1)}`).join(", ");
+  document.getElementById("pdExplanation").innerHTML=`A chance de <b>${esc(d.pilot)}</b> foi calculada simulando as ${d.remaining} corridas restantes <b>${d.SIMS.toLocaleString("pt-BR")}</b> vezes. Em cada corrida, primeiro o modelo decide se cada piloto do cenário participa. Se participa, ele recebe um desempenho provável baseado no histórico, mas ajustado para comparar corridas com grids de tamanhos diferentes. O histórico recebe um <b>peso um pouco maior conforme a corrida fica mais recente</b> (${rwText||"pesos não disponíveis"}). Isso serve para dar mais importância à forma mais atual do piloto, sem criar uma regra separada de “evolução” ou tendência. Antes disso, usamos o <b>prior = ${d.positionPrior ?? 2}</b>: ele funciona como uma pequena correção para históricos curtos, puxando a média e a variação do piloto um pouco em direção à média do campo. Depois os participantes são ordenados, a posição vira pontos pela regra 10, 7, 5, 3, 2, 1 e 0, e os pontos são somados ao total atual. No final, contamos quantas simulações tiveram <b>${esc(d.pilot)}</b> como campeão. Por isso, ${pct} significa que o piloto terminou em 1º em aproximadamente essa fração dos ${d.SIMS.toLocaleString("pt-BR")} campeonatos simulados, dentro deste cenário de pilotos selecionados. A incerteza de ${uncertainty} mede apenas a oscilação da simulação de Monte Carlo; ela não mede a incerteza das premissas do modelo.`;
+  document.getElementById("probDetailModal").classList.add("open");
+  document.getElementById("probDetailModal").setAttribute("aria-hidden","false");
+  document.body.classList.add("modal-open");
+  setTimeout(()=>document.querySelector(".probDetailClose")?.focus(),20);
+}
+
+function closeProbDetail(){
+  const m=document.getElementById("probDetailModal");
+  if(!m)return;
+  m.classList.remove("open");
+  m.setAttribute("aria-hidden","true");
+  document.body.classList.remove("modal-open");
+}
+
 document.addEventListener("click", (ev)=>{
+  const probPilot=ev.target.closest("[data-prob-pilot]");
+  if(probPilot){
+    openProbDetail(probPilot.dataset.probPilot);
+    return;
+  }
   const pilotNav=ev.target.closest("[data-pilot-nav]");
   if(pilotNav){
     goToPilot(pilotNav.dataset.pilotNav);
@@ -1940,11 +2584,20 @@ document.addEventListener("click", (ev)=>{
 });
 
 document.addEventListener("keydown",(ev)=>{
+  const probPilot=ev.target.closest?.("[data-prob-pilot]");
+  if(probPilot && (ev.key==="Enter" || ev.key===" ")){
+    ev.preventDefault();
+    openProbDetail(probPilot.dataset.probPilot);
+    return;
+  }
   const pilotNav=ev.target.closest?.("[data-pilot-nav]");
   if(pilotNav && (ev.key==="Enter" || ev.key===" ")){
     ev.preventDefault();
     goToPilot(pilotNav.dataset.pilotNav);
     return;
+  }
+  if(ev.key==="Escape" && document.getElementById("probDetailModal")?.classList.contains("open")){
+    closeProbDetail();return;
   }
   if(ev.key==="Escape" && document.getElementById("resultModal")?.classList.contains("open")){
     closeResultModal();return;
@@ -1966,6 +2619,7 @@ function init(){
  const rc=document.getElementById("racesBox");RACES.forEach(r=>rc.insertAdjacentHTML("beforeend",`<label class="chk"><input type="checkbox" value="${esc(r)}" checked onchange="updateChamp()"> ${esc(r)}</label>`));
  const pc=document.getElementById("pilotsBox");PILOTS.forEach(p=>pc.insertAdjacentHTML("beforeend",`<label class="chk"><input type="checkbox" value="${esc(p)}" onchange="updateChamp()"> ${esc(p)}</label>`));
  const sel=document.getElementById("pilotSelect");PILOTS.forEach(p=>sel.insertAdjacentHTML("beforeend",`<option value="${esc(p)}">${esc(p)}</option>`));sel.onchange=updatePilot;
+ populateSimPilotSelect(PILOTS);
  updateChamp();updatePilot();updateResults();
 }
 init();
